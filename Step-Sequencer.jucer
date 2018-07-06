@@ -7,8 +7,16 @@
       <FILE id="JMftT4" name="Audio.h" compile="0" resource="0" file="Source/audio/Audio.h"/>
     </GROUP>
     <GROUP id="{79B457E1-4FF3-289A-EDAC-E7CB6688F6A3}" name="gui">
-      <GROUP id="{16D8C53D-1B9E-F60C-1542-BFD88AF84463}" name="controller"/>
-      <GROUP id="{EA6DDFD1-678C-7D63-1991-90BF056C90EB}" name="sequencer"/>
+      <GROUP id="{16D8C53D-1B9E-F60C-1542-BFD88AF84463}" name="controller">
+        <FILE id="YOMD47" name="ControllerGUI.cpp" compile="1" resource="0"
+              file="Source/gui/controller/ControllerGUI.cpp"/>
+        <FILE id="apGy6H" name="ControllerGUI.h" compile="0" resource="0" file="Source/gui/controller/ControllerGUI.h"/>
+      </GROUP>
+      <GROUP id="{EA6DDFD1-678C-7D63-1991-90BF056C90EB}" name="sequencer">
+        <FILE id="dgyFVD" name="SequencerGUI.cpp" compile="1" resource="0"
+              file="Source/gui/sequencer/SequencerGUI.cpp"/>
+        <FILE id="kQC09N" name="SequencerGUI.h" compile="0" resource="0" file="Source/gui/sequencer/SequencerGUI.h"/>
+      </GROUP>
       <FILE id="phkzYe" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/gui/MainComponent.cpp"/>
       <FILE id="ZhWbiD" name="MainComponent.h" compile="0" resource="0" file="Source/gui/MainComponent.h"/>

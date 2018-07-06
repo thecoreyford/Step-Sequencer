@@ -10,6 +10,8 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "../audio/Audio.h"
+#include "sequencer/SequencerGUI.h"
+#include "controller/ControllerGUI.h"
 
 //==============================================================================
 
@@ -34,6 +36,9 @@ namespace gui
         //==============================================================================
         // Your private member variables go here...
         audio::Audio& _audio;
+        
+        SequencerGUI _sequencer;
+        ControllerGUI _controller;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
     };
