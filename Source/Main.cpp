@@ -10,6 +10,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "gui/MainComponent.h"
+#include "audio/Audio.h"
 
 //==============================================================================
 class StepSequencerApplication  : public JUCEApplication
@@ -27,14 +28,14 @@ public:
     {
         // This method is where you should put your application's initialisation code..
 
-        mainWindow.reset (new MainWindow (getApplicationName()));
+        _mainWindow = new MainWindow (getApplicationName(), _audio);
     }
 
     void shutdown() override
     {
         // Add your application's shutdown code here..
 
-        mainWindow = nullptr; // (deletes our window)
+        _mainWindow = nullptr; // (deletes our window)
     }
 
     //==============================================================================
@@ -60,13 +61,15 @@ public:
     class MainWindow    : public DocumentWindow
     {
     public:
-        MainWindow (String name)  : DocumentWindow (name,
+        MainWindow (String name, audio::Audio& audio)  : DocumentWindow (name,
                                                     Desktop::getInstance().getDefaultLookAndFeel()
                                                                           .findColour (ResizableWindow::backgroundColourId),
                                                     DocumentWindow::allButtons)
         {
+            ScopedPointer<gui::MainComponent> mainComponent (new gui::MainComponent (audio));
             setUsingNativeTitleBar (true);
-            setContentOwned (new MainComponent(), true);
+            
+            setContentOwned (mainComponent.release(), true);
 
             centreWithSize (getWidth(), getHeight());
             setVisible (true);
@@ -92,7 +95,8 @@ public:
     };
 
 private:
-    std::unique_ptr<MainWindow> mainWindow;
+    ScopedPointer<MainWindow> _mainWindow;
+    audio::Audio _audio;
 };
 
 //==============================================================================
