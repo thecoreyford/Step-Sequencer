@@ -16,6 +16,8 @@ namespace gui
 {
     SequencerGUI::SequencerGUI()
     {
+        addAndMakeVisible(_seqGrid);
+        addAndMakeVisible(_keyGrid);
     }
     
     SequencerGUI::~SequencerGUI()
@@ -29,7 +31,13 @@ namespace gui
     
     void SequencerGUI::resized()
     {
+        Rectangle<int> sequencerRectangle, keyboardRectangle;
+        sequencerRectangle = keyboardRectangle = getLocalBounds();
+        sequencerRectangle.removeFromLeft(getWidth() * 0.30);
+        keyboardRectangle.removeFromRight(getWidth() * 0.70);
         
+        _seqGrid.setBounds(sequencerRectangle);
+        _keyGrid.setBounds(keyboardRectangle);
     }
     
 }

@@ -21,6 +21,12 @@
               file="Source/gui/controller/SynthesiserGUI.h"/>
       </GROUP>
       <GROUP id="{EA6DDFD1-678C-7D63-1991-90BF056C90EB}" name="sequencer">
+        <FILE id="p67dR3" name="KeyboardGrid.cpp" compile="1" resource="0"
+              file="Source/gui/sequencer/KeyboardGrid.cpp"/>
+        <FILE id="LeGe2A" name="KeyboardGrid.h" compile="0" resource="0" file="Source/gui/sequencer/KeyboardGrid.h"/>
+        <FILE id="VIS6VZ" name="SequencerGrid.cpp" compile="1" resource="0"
+              file="Source/gui/sequencer/SequencerGrid.cpp"/>
+        <FILE id="jAq7Uk" name="SequencerGrid.h" compile="0" resource="0" file="Source/gui/sequencer/SequencerGrid.h"/>
         <FILE id="dgyFVD" name="SequencerGUI.cpp" compile="1" resource="0"
               file="Source/gui/sequencer/SequencerGUI.cpp"/>
         <FILE id="kQC09N" name="SequencerGUI.h" compile="0" resource="0" file="Source/gui/sequencer/SequencerGUI.h"/>

@@ -11,6 +11,8 @@
 #pragma once
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
+#include "SequencerGrid.h"
+#include "KeyboardGrid.h"
 
 //==============================================================================
 
@@ -22,13 +24,20 @@ namespace gui
     class SequencerGUI : public Component
     {
     public:
+        /** Constructor. Makes sub components visible. */
         SequencerGUI();
+        
+        /** Destructor. Currently does nothing. */
         ~SequencerGUI();
         
+        /** */
         void paint (Graphics&) override;
         void resized() override;
         
     private:
+        SequencerGrid _seqGrid;
+        KeyboardGrid _keyGrid;
+        
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequencerGUI)
     };
     
