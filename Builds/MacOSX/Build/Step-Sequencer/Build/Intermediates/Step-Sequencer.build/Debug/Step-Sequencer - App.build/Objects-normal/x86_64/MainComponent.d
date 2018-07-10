@@ -468,4 +468,6 @@ dependencies: \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/capture/juce_CameraDevice.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/../audio/Audio.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/SequencerGUI.h \
-  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/ControllerGUI.h
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/ControllerGUI.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/PlayBackControls.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/SynthesiserGUI.h

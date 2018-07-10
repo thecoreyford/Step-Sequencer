@@ -11,6 +11,8 @@
 #pragma once
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
+#include "PlayBackControls.h"
+#include "SynthesiserGUI.h"
 
 //==============================================================================
 
@@ -22,13 +24,25 @@ namespace gui
     class ControllerGUI : public Component
     {
     public:
+        /** Constructor. Makes sub components visible. */
         ControllerGUI();
+        
+        /** Destructor. Currently does nothing. */
         ~ControllerGUI();
         
+        /** 
+         Fills component with horrible colour as this should be hidden.
+         @param the graphics context for painting.
+         */
         void paint (Graphics&) override;
+        
+        /** Sets bounds for sub components. */
         void resized() override;
         
     private:
+        PlayBackControls _playback;
+        SynthesiserGUI _synthGUI; 
+        
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ControllerGUI)
     };
     

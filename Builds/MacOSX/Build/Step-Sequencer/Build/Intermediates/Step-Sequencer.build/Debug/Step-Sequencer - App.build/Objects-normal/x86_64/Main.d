@@ -468,4 +468,6 @@ dependencies: \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/MainComponent.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/../audio/Audio.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/SequencerGUI.h \
-  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/ControllerGUI.h
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/ControllerGUI.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/PlayBackControls.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/SynthesiserGUI.h

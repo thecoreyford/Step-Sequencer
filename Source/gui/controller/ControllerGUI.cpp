@@ -16,6 +16,8 @@ namespace gui
 {
     ControllerGUI::ControllerGUI()
     {
+        addAndMakeVisible(_playback);
+        addAndMakeVisible(_synthGUI);
     }
     
     ControllerGUI::~ControllerGUI()
@@ -29,6 +31,14 @@ namespace gui
     
     void ControllerGUI::resized()
     {
+        Rectangle<int> playbackRectangle, synthesiserRectangle;
+        playbackRectangle = synthesiserRectangle = getLocalBounds();
+        playbackRectangle.removeFromLeft(getWidth() * 0.25);
+        synthesiserRectangle.removeFromRight(getWidth() * 0.75);
+        
+        _playback.setBounds(playbackRectangle);
+        _synthGUI.setBounds(synthesiserRectangle);
+        
     }
     
 }//namespace gui

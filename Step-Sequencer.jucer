@@ -11,6 +11,14 @@
         <FILE id="YOMD47" name="ControllerGUI.cpp" compile="1" resource="0"
               file="Source/gui/controller/ControllerGUI.cpp"/>
         <FILE id="apGy6H" name="ControllerGUI.h" compile="0" resource="0" file="Source/gui/controller/ControllerGUI.h"/>
+        <FILE id="WMFEJh" name="PlayBackControls.cpp" compile="1" resource="0"
+              file="Source/gui/controller/PlayBackControls.cpp"/>
+        <FILE id="QCFYth" name="PlayBackControls.h" compile="0" resource="0"
+              file="Source/gui/controller/PlayBackControls.h"/>
+        <FILE id="bKZPLh" name="SynthesiserGUI.cpp" compile="1" resource="0"
+              file="Source/gui/controller/SynthesiserGUI.cpp"/>
+        <FILE id="B78sPV" name="SynthesiserGUI.h" compile="0" resource="0"
+              file="Source/gui/controller/SynthesiserGUI.h"/>
       </GROUP>
       <GROUP id="{EA6DDFD1-678C-7D63-1991-90BF056C90EB}" name="sequencer">
         <FILE id="dgyFVD" name="SequencerGUI.cpp" compile="1" resource="0"
