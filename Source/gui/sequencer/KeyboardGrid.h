@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
+#include "../widgets/Key.h"
 
 //==============================================================================
 
@@ -18,16 +19,23 @@ namespace gui
 {
     /*
      */
-    class KeyboardGrid    : public Component
+    class KeyboardGrid : public Component
     {
     public:
-        KeyboardGrid();
+        KeyboardGrid(const int rowCount);
         ~KeyboardGrid();
         
         void paint (Graphics&) override;
         void resized() override;
         
     private:
+        
+        KeyboardGrid();
+        
+        int _rowCount;
+        int _columnCount;
+        
+        OwnedArray<Key> _keys;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardGrid)
     };
     

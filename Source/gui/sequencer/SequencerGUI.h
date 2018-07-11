@@ -35,8 +35,11 @@ namespace gui
         void resized() override;
         
     private:
-        SequencerGrid _seqGrid;
-        KeyboardGrid _keyGrid;
+        SequencerGrid* _seqGrid;
+        KeyboardGrid* _keyGrid;
+        
+        static const int _rowCount = 20;
+        static const int _columnCount = 16;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequencerGUI)
     };

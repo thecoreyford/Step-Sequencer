@@ -31,6 +31,13 @@
               file="Source/gui/sequencer/SequencerGUI.cpp"/>
         <FILE id="kQC09N" name="SequencerGUI.h" compile="0" resource="0" file="Source/gui/sequencer/SequencerGUI.h"/>
       </GROUP>
+      <GROUP id="{8853D14F-4286-ADD1-E17B-8B07E9CE9B43}" name="widgets">
+        <FILE id="fPoL9d" name="CustomToggle.cpp" compile="1" resource="0"
+              file="Source/gui/widgets/CustomToggle.cpp"/>
+        <FILE id="wI9AYy" name="CustomToggle.h" compile="0" resource="0" file="Source/gui/widgets/CustomToggle.h"/>
+        <FILE id="E44uPI" name="Key.cpp" compile="1" resource="0" file="Source/gui/widgets/Key.cpp"/>
+        <FILE id="s11La4" name="Key.h" compile="0" resource="0" file="Source/gui/widgets/Key.h"/>
+      </GROUP>
       <FILE id="phkzYe" name="MainComponent.cpp" compile="1" resource="0"
             file="Source/gui/MainComponent.cpp"/>
       <FILE id="ZhWbiD" name="MainComponent.h" compile="0" resource="0" file="Source/gui/MainComponent.h"/>

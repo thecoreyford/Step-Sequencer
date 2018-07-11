@@ -14,9 +14,10 @@
 
 namespace gui
 {
-    KeyboardGrid::KeyboardGrid()
+    KeyboardGrid::KeyboardGrid(const int rowCount) : _rowCount(rowCount)
     {
-        
+        for(int row = 0; row < rowCount; row++)
+            addAndMakeVisible ( _keys.add (new Key (row + 59)) );
     }
     
     KeyboardGrid::~KeyboardGrid()
@@ -25,13 +26,24 @@ namespace gui
     
     void KeyboardGrid::paint (Graphics& g)
     {
-        g.fillAll (Colours::tomato);   // clear the background
-        
+        g.fillAll (Colours::darkgrey); // clear the background
     }
     
     void KeyboardGrid::resized()
     {
+        Grid grid;
         
+        grid.setGap(5_px);
+        
+        grid.templateColumns.add( Grid::TrackInfo (1_fr) );
+        
+        for(int row = 0; row < _rowCount; row++)
+        {
+            grid.templateRows.add( Grid::TrackInfo (1_fr) );
+            grid.items.add( GridItem (_keys[row]) );
+        }
+        
+        grid.performLayout( getLocalBounds() );
     }
     
 } //namespace gui
