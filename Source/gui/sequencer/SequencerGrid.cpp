@@ -14,33 +14,25 @@
 
 namespace gui
 {
-    SequencerGrid::SequencerGrid(const int rowCount, const int columnCount) :
-    _rowCount(rowCount),
-    _columnCount(columnCount)
+    SequencerGrid::SequencerGrid(const int rowCount, const int columnCount) : _rowCount(rowCount),
+                                                                              _columnCount(columnCount)
     {
-        //dynamically create a 2D array of Custom Toggle Buttons
-        steps = new CustomToggle*[_rowCount];
-        for(int row = 0; row < _rowCount; ++row)
-            steps[row] = new CustomToggle[_columnCount];
-        
-        //make array visible
-        for(int col = 0; col < _columnCount; col++)
+        Array< std::shared_ptr<CustomToggle> > column;
+        for(int col = 0; col < columnCount; col++)
         {
-            for(int row = 0; row < _rowCount; row++)
+            column.clear(); //empty the column
+            for(int row = 0; row < rowCount; row++)
             {
-                addAndMakeVisible(steps[row][col]);
+                //populate the column with buttons
+                column.add( std::make_shared<CustomToggle>(row, col) );
+                addAndMakeVisible(column.getLast().get()); //show on screen 
             }
+            steps.add( column ); //add that newly filled column
         }
         
     }
     
-    SequencerGrid::~SequencerGrid()
-    {
-        for(int row = 0; row < _rowCount; row++) {
-            delete [] steps[row];
-        }
-        delete [] steps;
-    }
+    SequencerGrid::~SequencerGrid(){}
     
     void SequencerGrid::paint (Graphics& g)
     {
@@ -62,11 +54,12 @@ namespace gui
         
         //--
         
-        for(int col = 0; col < _columnCount; col++)
+        for(int row = 0; row < _rowCount; row++)
         {
-            for(int row = 0; row < _rowCount; row++)
+            for(int col = 0; col < _columnCount; col++)
             {
-                grid.items.add( steps[row][col] );
+                auto column = steps.getUnchecked(col);
+                grid.items.add( column.getUnchecked(row).get() );
             }
         }
         

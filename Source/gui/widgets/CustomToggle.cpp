@@ -14,9 +14,9 @@
 
 namespace gui
 {
-    CustomToggle::CustomToggle()
+    CustomToggle::CustomToggle(const int row, const int column) : _row(row), _column(column)
     {
-        state = 0;
+        _state = false;
     }
     
     CustomToggle::~CustomToggle()
@@ -25,7 +25,7 @@ namespace gui
     
     void CustomToggle::paint (Graphics& g)
     {
-        Colour fillColour = (state == 1 ? Colours::green : Colours::red );
+        Colour fillColour = (_state == true ? Colours::green : Colours::red );
         g.fillAll(fillColour);
     }
     
@@ -33,13 +33,14 @@ namespace gui
     
     void CustomToggle::mouseDown(const MouseEvent & event)
     {
-        state = !state;
+        _state = !_state;
         repaint();
+        DBG( (String)_row );
     }
     
     bool CustomToggle::getState() const
     {
-        return state; 
+        return _state;
     }
 }
 

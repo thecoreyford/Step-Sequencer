@@ -35,7 +35,7 @@ namespace gui
         int _rowCount;
         int _columnCount;
         
-        CustomToggle** steps; ///< Dynamically allocate 2D array
+        Array< Array< std::shared_ptr<CustomToggle> > > steps; ///< Dynamically allocate 2D array
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequencerGrid)
     };

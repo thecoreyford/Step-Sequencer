@@ -21,18 +21,26 @@ namespace gui
     class CustomToggle : public Component
     {
     public:
-        CustomToggle();
+        
+        CustomToggle(const int row, const int column);
+        
         ~CustomToggle();
         
         void paint (Graphics&) override;
         void resized() override;
         
-        void mouseDown(const MouseEvent & event) override;
+        void mouseDown (const MouseEvent & event) override;
         
         bool getState() const;
         
     private:
-        bool state;
+        
+        CustomToggle();
+        
+        bool _state;
+        
+        const int _row;
+        const int _column;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomToggle)
     };
