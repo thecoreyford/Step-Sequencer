@@ -25,7 +25,8 @@ namespace gui
             {
                 //populate the column with buttons
                 column.add( std::make_shared<CustomToggle>(row, col) );
-                addAndMakeVisible(column.getLast().get()); //show on screen 
+                addAndMakeVisible(column.getLast().get()); //show on screen
+                column.getLast()->addListener(this); //TODO(corey2.ford@live.uwe.ac.uk): remove once concept proved
             }
             steps.add( column ); //add that newly filled column
         }
@@ -64,6 +65,16 @@ namespace gui
         }
         
         grid.performLayout( getLocalBounds() );
+    }
+    
+    //---TODO(corey2.ford@live.uwe.ac.uk): delete after proving concept
+    void SequencerGrid::customToggleChanged(const bool state,
+                                const int row,
+                                const int column)
+    {
+        DBG((String)(int)state);
+        DBG((String)row);
+        DBG((String)column);
     }
     
 } //namespace gui

@@ -20,7 +20,8 @@ namespace gui
     /*
      Holds a grid of each sequencer step and makes visible.
      */
-    class SequencerGrid    : public Component
+    class SequencerGrid    : public Component,
+                             public CustomToggle::Listener
     {
     public:
         /**
@@ -46,6 +47,10 @@ namespace gui
          */
         void resized() override;
         
+        //--TODO(corey2.ford@live.uwe.ac.uk): remove after proving listener concept
+        void customToggleChanged(const bool state,
+                                    const int row,
+                                    const int column) override;
     private:
         
         /** 

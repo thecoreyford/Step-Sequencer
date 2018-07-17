@@ -17,11 +17,10 @@ namespace gui
     CustomToggle::CustomToggle(const int row, const int column) : _row(row), _column(column)
     {
         _state = false;
+        _listener = nullptr;
     }
     
-    CustomToggle::~CustomToggle()
-    {
-    }
+    CustomToggle::~CustomToggle(){}
     
     void CustomToggle::paint (Graphics& g)
     {
@@ -35,9 +34,10 @@ namespace gui
     {
         _state = !_state;
         
-        if(_state == true)
+        if(_listener != nullptr)
         {
-            //fire off message to midi out
+            // Broadcast all button information
+            _listener->customToggleChanged(_state, _row, _column);
         }
         
         repaint();
@@ -47,5 +47,12 @@ namespace gui
     {
         return _state;
     }
-}
+    
+    //==========================================================================
+    
+    void CustomToggle::addListener (Listener* listener)
+    {
+        _listener = listener;
+    }
 
+}

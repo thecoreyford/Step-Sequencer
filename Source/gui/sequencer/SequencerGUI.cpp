@@ -43,5 +43,4 @@ namespace gui
         _seqGrid->setBounds(sequencerRectangle);
         _keyGrid->setBounds(keyboardRectangle);
     }
-    
 }

@@ -14,6 +14,9 @@
 
 //==============================================================================
 
+//TODO(corey2.ford@live.uwe.ac.uk): refactor to be modular as a toggle button
+//                                  conjoined with the juce point class!
+
 namespace gui
 {
     /*
@@ -33,6 +36,22 @@ namespace gui
         
         bool getState() const;
         
+        //======================================================================
+        
+        class Listener
+        {
+        public:
+            virtual ~Listener() {}
+            
+            virtual void customToggleChanged(const bool state,
+                                             const int row,
+                                             const int column) = 0;
+        };
+        
+        void addListener (Listener* listener);
+        
+        //======================================================================
+        
     private:
         
         CustomToggle();
@@ -41,6 +60,8 @@ namespace gui
         
         const int _row;
         const int _column;
+        
+        Listener* _listener;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CustomToggle)
     };

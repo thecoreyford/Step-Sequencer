@@ -28,7 +28,7 @@ public:
     {
         // This method is where you should put your application's initialisation code..
 
-        _mainWindow = new MainWindow (getApplicationName(), _audio);
+        _mainWindow = std::make_unique<MainWindow>(getApplicationName(), _audio);
     }
 
     void shutdown() override
@@ -95,9 +95,9 @@ public:
     private:
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainWindow)
     };
-
+    
 private:
-    ScopedPointer<MainWindow> _mainWindow;
+    std::unique_ptr<MainWindow> _mainWindow;
     audio::Audio _audio;
 };
 
