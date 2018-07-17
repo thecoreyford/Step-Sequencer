@@ -18,18 +18,39 @@
 namespace gui
 {
     /*
+     Holds a grid of each sequencer step and makes visible.
      */
     class SequencerGrid    : public Component
     {
     public:
+        /**
+         *  Constructor. Initilises each grid based on the size passed.
+         *  @param rowCount is the no of buttons along the x axis.
+         *  @param columnCount is the no of buttons along the y axis.
+         */
         SequencerGrid(const int rowCount, const int columnCount);
+        
+        
+        /** Destructor. Currently does nothing */
         ~SequencerGrid();
         
+        /**
+         Fills component with a dark grey backdrop.
+         @param the graphics context for painting.
+         */
         void paint (Graphics&) override;
+        
+        /**
+         Creates a grid object that is then populated with each 
+         button with the step sequencer.
+         */
         void resized() override;
         
     private:
         
+        /** 
+         Private constructor. Object must initialise a size.
+         */
         SequencerGrid();
         
         int _rowCount;

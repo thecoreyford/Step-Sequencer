@@ -42,6 +42,7 @@ namespace gui
     
     void SequencerGrid::resized()
     {
+        // Setup grid with correct no of rows and columns
         Grid grid;
         
         grid.setGap(5_px);
@@ -52,8 +53,7 @@ namespace gui
         for(int col = 0; col < _columnCount; col++)
             grid.templateColumns.add( Grid::TrackInfo (1_fr) );
         
-        //--
-        
+        // Add items to the grid from our 2d array of buttons (steps)
         for(int row = 0; row < _rowCount; row++)
         {
             for(int col = 0; col < _columnCount; col++)

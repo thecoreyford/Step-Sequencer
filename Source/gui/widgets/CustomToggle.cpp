@@ -34,8 +34,13 @@ namespace gui
     void CustomToggle::mouseDown(const MouseEvent & event)
     {
         _state = !_state;
+        
+        if(_state == true)
+        {
+            //fire off message to midi out
+        }
+        
         repaint();
-        DBG( (String)_row );
     }
     
     bool CustomToggle::getState() const

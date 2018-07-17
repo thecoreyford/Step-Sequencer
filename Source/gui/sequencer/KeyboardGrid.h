@@ -18,6 +18,7 @@
 namespace gui
 {
     /*
+     A visual representation of an onscreen keyboard within a grid. 
      */
     class KeyboardGrid : public Component
     {
@@ -33,7 +34,6 @@ namespace gui
         KeyboardGrid();
         
         int _rowCount;
-        int _columnCount;
         
         OwnedArray<Key> _keys;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardGrid)

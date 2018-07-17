@@ -17,6 +17,7 @@
 namespace gui
 {
     /*
+     Handles the controls for playback from @see MidiOut.hpp
      */
     class PlayBackControls    : public Component
     {
