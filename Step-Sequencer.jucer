@@ -5,6 +5,8 @@
     <GROUP id="{DFA4767C-E388-6E59-7D87-6FD4CB796BD9}" name="audio">
       <FILE id="aSmwAT" name="Audio.cpp" compile="1" resource="0" file="Source/audio/Audio.cpp"/>
       <FILE id="JMftT4" name="Audio.h" compile="0" resource="0" file="Source/audio/Audio.h"/>
+      <FILE id="yYw3Ik" name="MidiOut.cpp" compile="1" resource="0" file="Source/audio/MidiOut.cpp"/>
+      <FILE id="cJtJZT" name="MidiOut.h" compile="0" resource="0" file="Source/audio/MidiOut.h"/>
     </GROUP>
     <GROUP id="{79B457E1-4FF3-289A-EDAC-E7CB6688F6A3}" name="gui">
       <GROUP id="{16D8C53D-1B9E-F60C-1542-BFD88AF84463}" name="controller">
