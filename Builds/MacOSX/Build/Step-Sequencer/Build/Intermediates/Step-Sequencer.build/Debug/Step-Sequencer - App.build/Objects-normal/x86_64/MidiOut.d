@@ -1,7 +1,7 @@
 dependencies: \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/MidiOut.cpp \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/MidiOut.h \
-  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/../gui/widgets/CustomToggle.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/../gui/widgets/CartesianToggleButton.h \
   ../../JuceLibraryCode/../JuceLibraryCode/JuceHeader.h \
   ../../JuceLibraryCode/AppConfig.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_basics/juce_audio_basics.h \

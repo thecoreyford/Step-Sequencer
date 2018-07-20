@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "../gui/widgets/CustomToggle.h"
+#include "../gui/widgets/CartesianToggleButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
@@ -19,11 +19,11 @@
 
 namespace audio
 {
-    class MidiOut : gui::CustomToggle::Listener
+    class MidiOut : gui::CartesianToggleButton::Listener
     {
     public:
         
-        void customToggleChanged(const bool state,
+        void cartesianToggleChanged(const bool state,
                                     const int row,
                                     const int column) override;
         

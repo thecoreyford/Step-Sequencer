@@ -466,4 +466,4 @@ dependencies: \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/juce_video.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/playback/juce_VideoComponent.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/capture/juce_CameraDevice.h \
-  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../widgets/CustomToggle.h
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../widgets/CartesianToggleButton.h

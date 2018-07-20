@@ -17,14 +17,14 @@ namespace gui
     SequencerGrid::SequencerGrid(const int rowCount, const int columnCount) : _rowCount(rowCount),
                                                                               _columnCount(columnCount)
     {
-        Array< std::shared_ptr<CustomToggle> > column;
+        Array< std::shared_ptr<CartesianToggleButton> > column;
         for(int col = 0; col < columnCount; col++)
         {
             column.clear(); //empty the column
             for(int row = 0; row < rowCount; row++)
             {
                 //populate the column with buttons
-                column.add( std::make_shared<CustomToggle>(row, col) );
+                column.add( std::make_shared<CartesianToggleButton>(col, row) );
                 addAndMakeVisible(column.getLast().get()); //show on screen
                 column.getLast()->addListener(this); //TODO(corey2.ford@live.uwe.ac.uk): remove once concept proved
             }
@@ -68,13 +68,12 @@ namespace gui
     }
     
     //---TODO(corey2.ford@live.uwe.ac.uk): delete after proving concept
-    void SequencerGrid::customToggleChanged(const bool state,
-                                const int row,
-                                const int column)
+    void SequencerGrid::cartesianToggleChanged(const bool state,
+                                const int x,
+                                const int y)
     {
-        DBG((String)(int)state);
-        DBG((String)row);
-        DBG((String)column);
+        DBG("Row" + (String)y);
+        DBG("Column" + (String)x);
     }
     
 } //namespace gui

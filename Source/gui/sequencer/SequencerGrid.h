@@ -11,7 +11,7 @@
 #pragma once
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
-#include "../widgets/CustomToggle.h"
+#include "../widgets/CartesianToggleButton.h"
 
 //==============================================================================
 
@@ -21,7 +21,7 @@ namespace gui
      Holds a grid of each sequencer step and makes visible.
      */
     class SequencerGrid    : public Component,
-                             public CustomToggle::Listener
+                             public CartesianToggleButton::Listener
     {
     public:
         /**
@@ -48,7 +48,7 @@ namespace gui
         void resized() override;
         
         //--TODO(corey2.ford@live.uwe.ac.uk): remove after proving listener concept
-        void customToggleChanged(const bool state,
+        void cartesianToggleChanged(const bool state,
                                     const int row,
                                     const int column) override;
     private:
@@ -61,7 +61,7 @@ namespace gui
         int _rowCount;
         int _columnCount;
         
-        Array< Array< std::shared_ptr<CustomToggle> > > steps; ///< Dynamically allocate 2D array
+        Array< Array< std::shared_ptr<CartesianToggleButton> > > steps; ///< Dynamically allocate 2D array
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequencerGrid)
     };
