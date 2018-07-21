@@ -19,7 +19,7 @@
 namespace gui
 {
     /**
-      Draws the visual components controlling musical parameters.
+     *  Draws the visual components controlling musical parameters.
      */
     class ControllerGUI : public Component
     {
@@ -31,8 +31,8 @@ namespace gui
         ~ControllerGUI();
         
         /** 
-         Fills component with horrible colour as this should be hidden.
-         @param the graphics context for painting.
+         *  Fills component with horrible colour as this should be hidden.
+         *  @param the graphics context for painting.
          */
         void paint (Graphics&) override;
         
@@ -40,7 +40,10 @@ namespace gui
         void resized() override;
         
     private:
+        /** The gui for playback controls. */
         PlayBackControls _playback;
+        
+        /** The gui for the synthesiser. */
         SynthesiserGUI _synthGUI; 
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ControllerGUI)

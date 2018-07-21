@@ -37,29 +37,33 @@ namespace gui
         ~SequencerGrid();
         
         /**
-         Fills component with a dark grey backdrop.
-         @param the graphics context for painting.
+         *  Fills component with a dark grey backdrop.
+         *  @param the graphics context for painting.
          */
         void paint (Graphics&) override;
         
         /**
-         Creates a grid object that is then populated with each 
-         button with the step sequencer.
+         *  Creates a grid object that is then populated with each
+         *  button with the step sequencer.
          */
         void resized() override;
         
     private:
         
         /** 
-         Private constructor. Object must initialise a size.
+         *  Private constructor. Object must initialise a size.
          */
         SequencerGrid();
         
+        /** The number of rows for our grid */
         int _rowCount;
+        /** The number of columns for our grid */
         int _columnCount;
         
+        /** Instance of @see audio/MidiOut.h */
         audio::MidiOut& _midiOut = audio::MidiOut::getInstance();
         
+        /** 2D array of buttons representing our grid points */
         Array< Array< std::shared_ptr<CartesianToggleButton> > > steps; ///< Dynamically allocate 2D array
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequencerGrid)

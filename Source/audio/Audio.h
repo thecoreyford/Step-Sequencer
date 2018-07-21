@@ -67,6 +67,7 @@ namespace audio
                                                 const MidiMessage& message) override;
         
     private:
+        /** The audio device manager handling all ins & outs!*/
         AudioDeviceManager _audioDeviceManager;
     };
     

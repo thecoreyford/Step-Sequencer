@@ -30,8 +30,15 @@ namespace gui
         /** Destructor. Currently does nothing. */
         ~SequencerGUI();
         
-        /** */
+        /**
+         *  Fills component;
+         *  @param the graphics context for painting.
+         */
         void paint (Graphics&) override;
+        
+        /**
+         *  Sets bounds and proprtions for components.
+         */
         void resized() override;
         
     private:

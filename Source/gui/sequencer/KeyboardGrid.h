@@ -19,7 +19,7 @@
 namespace gui
 {
     /*
-     A visual representation of an onscreen keyboard within a grid. 
+     *  A visual representation of an onscreen keyboard within a grid.
      */
     class KeyboardGrid : public Component
     {
