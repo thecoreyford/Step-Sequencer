@@ -14,9 +14,9 @@
 
 namespace gui
 {
-    SequencerGrid::SequencerGrid(const int rowCount, const int columnCount) : _rowCount(rowCount),
-                                                                              _columnCount(columnCount)
-    {
+    SequencerGrid::SequencerGrid(const int rowCount, const int columnCount):
+    _rowCount(rowCount), _columnCount(columnCount)
+    {        
         Array< std::shared_ptr<CartesianToggleButton> > column;
         for(int col = 0; col < columnCount; col++)
         {
@@ -26,7 +26,7 @@ namespace gui
                 //populate the column with buttons
                 column.add( std::make_shared<CartesianToggleButton>(col, row) );
                 addAndMakeVisible(column.getLast().get()); //show on screen
-                column.getLast()->addListener(this); //TODO(corey2.ford@live.uwe.ac.uk): remove once concept proved
+                column.getLast()->addListener(&_midiOut);
             }
             steps.add( column ); //add that newly filled column
         }
@@ -65,15 +65,6 @@ namespace gui
         }
         
         grid.performLayout( getLocalBounds() );
-    }
-    
-    //---TODO(corey2.ford@live.uwe.ac.uk): delete after proving concept
-    void SequencerGrid::cartesianToggleChanged(const bool state,
-                                const int x,
-                                const int y)
-    {
-        DBG("Row" + (String)y);
-        DBG("Column" + (String)x);
     }
     
 } //namespace gui

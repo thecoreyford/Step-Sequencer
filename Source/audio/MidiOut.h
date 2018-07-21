@@ -15,20 +15,36 @@
 
 //==============================================================================
 
-//TODO(corey2.ford!@live.uwe.ac.uk): come back here after refactoring CustomToggle
-
 namespace audio
 {
-    class MidiOut : gui::CartesianToggleButton::Listener
+    class MidiOut : public gui::CartesianToggleButton::Listener
     {
     public:
         
+        static MidiOut& getInstance();
+        
+        /**
+         Structure holding different settings for playback.
+         */
+        struct PlaybackSettings
+        {
+            int tempo;
+            uint8 velocity;
+            //TODO(corey2.ford@live.uwe.ac.uk): more settings???
+        };
+        
+        
         void cartesianToggleChanged(const bool state,
-                                    const int row,
-                                    const int column) override;
+                                    const int x,
+                                    const int y) override;
         
     private:
-        juce::MidiOutput _midiOutput;
+        MidiOut(); // must call get instance
+        ~MidiOut();
+        MidiOut(const MidiOut&); // cannot copy
+        void operator= (const MidiOut& ); //cannot copy
         
+        juce::MidiOutput* _midiOutput;
+        MidiMessageSequence _eventList;
     };
 } //namespace audio

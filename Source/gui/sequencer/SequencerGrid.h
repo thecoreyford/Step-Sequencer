@@ -12,6 +12,7 @@
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
 #include "../widgets/CartesianToggleButton.h"
+#include "../../audio/MidiOut.h"
 
 //==============================================================================
 
@@ -20,14 +21,14 @@ namespace gui
     /*
      Holds a grid of each sequencer step and makes visible.
      */
-    class SequencerGrid    : public Component,
-                             public CartesianToggleButton::Listener
+    class SequencerGrid    : public Component
     {
     public:
         /**
          *  Constructor. Initilises each grid based on the size passed.
          *  @param rowCount is the no of buttons along the x axis.
          *  @param columnCount is the no of buttons along the y axis.
+         *  @param midiOut is a reference to our midi output device.
          */
         SequencerGrid(const int rowCount, const int columnCount);
         
@@ -47,10 +48,6 @@ namespace gui
          */
         void resized() override;
         
-        //--TODO(corey2.ford@live.uwe.ac.uk): remove after proving listener concept
-        void cartesianToggleChanged(const bool state,
-                                    const int row,
-                                    const int column) override;
     private:
         
         /** 
@@ -60,6 +57,8 @@ namespace gui
         
         int _rowCount;
         int _columnCount;
+        
+        audio::MidiOut& _midiOut = audio::MidiOut::getInstance();
         
         Array< Array< std::shared_ptr<CartesianToggleButton> > > steps; ///< Dynamically allocate 2D array
         

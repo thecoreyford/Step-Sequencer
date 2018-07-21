@@ -41,8 +41,8 @@ namespace gui
             virtual ~Listener() {}
             
             virtual void cartesianToggleChanged(const bool state,
-                                             const int x,
-                                             const int y) = 0;
+                                                const int x,
+                                                const int y) = 0;
         };
         
         void addListener (Listener* listener);

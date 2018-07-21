@@ -11,7 +11,8 @@
 namespace gui
 {
     //==============================================================================
-    MainComponent::MainComponent(audio::Audio& audio) : _audio(audio)
+    MainComponent::MainComponent(audio::Audio& audio) :
+    _audio(audio)
     {
         setSize (1200, 800);
         

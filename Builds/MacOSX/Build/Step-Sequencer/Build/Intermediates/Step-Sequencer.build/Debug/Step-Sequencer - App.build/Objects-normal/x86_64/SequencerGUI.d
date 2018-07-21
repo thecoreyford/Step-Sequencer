@@ -468,5 +468,6 @@ dependencies: \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/capture/juce_CameraDevice.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/SequencerGrid.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../widgets/CartesianToggleButton.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../../audio/MidiOut.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/KeyboardGrid.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../widgets/Key.h
