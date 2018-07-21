@@ -17,7 +17,10 @@ namespace gui
     KeyboardGrid::KeyboardGrid(const int rowCount) : _rowCount(rowCount)
     {
         for(int row = 0; row < rowCount; row++)
-            addAndMakeVisible ( _keys.add (new Key (row + 59)) );
+        {
+            int inverseRow = rowCount - 1 - row; // so lowest note is at the bottom
+            addAndMakeVisible ( _keys.add (new Key (inverseRow + 59)) );
+        }
     }
     
     KeyboardGrid::~KeyboardGrid()

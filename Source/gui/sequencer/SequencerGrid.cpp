@@ -20,12 +20,16 @@ namespace gui
         Array< std::shared_ptr<CartesianToggleButton> > column;
         for(int col = 0; col < columnCount; col++)
         {
-            column.clear(); //empty the column
+            column.clear(); // empty the column
             for(int row = 0; row < rowCount; row++)
             {
-                //populate the column with buttons
-                column.add( std::make_shared<CartesianToggleButton>(col, row) );
+                int inverseRow = rowCount - 1 - row; // so lowest note is at the bottom
+
+                // populate the column with buttons
+                column.add( std::make_shared<CartesianToggleButton>(col, inverseRow));
                 addAndMakeVisible(column.getLast().get()); //show on screen
+                
+                // add listener to midi output
                 column.getLast()->addListener(&_midiOut);
             }
             steps.add( column ); //add that newly filled column

@@ -17,26 +17,20 @@
 
 namespace audio
 {
+    /**
+     MidiOut singleton for scheduling and playback of midi messages.
+     */
     class MidiOut : public gui::CartesianToggleButton::Listener
     {
     public:
         
         static MidiOut& getInstance();
         
-        /**
-         Structure holding different settings for playback.
-         */
-        struct PlaybackSettings
-        {
-            int tempo;
-            uint8 velocity;
-            //TODO(corey2.ford@live.uwe.ac.uk): more settings???
-        };
-        
-        
         void cartesianToggleChanged(const bool state,
                                     const int x,
                                     const int y) override;
+        
+        void setPlayback (String setting, int value);
         
     private:
         MidiOut(); // must call get instance
@@ -46,5 +40,7 @@ namespace audio
         
         juce::MidiOutput* _midiOutput;
         MidiMessageSequence _eventList;
+        
+        HashMap<String, float> _playbackSettings;
     };
 } //namespace audio

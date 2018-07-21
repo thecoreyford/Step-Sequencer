@@ -19,8 +19,7 @@ namespace audio
     /**
      * Handles MIDI input and audio output.
      */
-    class Audio : public AudioIODeviceCallback,
-                  public MidiInputCallback
+    class Audio : public AudioIODeviceCallback, public MidiInputCallback
     {
     public:
         
