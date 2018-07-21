@@ -27,14 +27,13 @@ namespace gui
 
                 // populate the column with buttons
                 column.add( std::make_shared<CartesianToggleButton>(col, inverseRow));
-                addAndMakeVisible(column.getLast().get()); //show on screen
+                addAndMakeVisible(column.getLast().get()); // show on screen
                 
                 // add listener to midi output
                 column.getLast()->addListener(&_midiOut);
             }
-            steps.add( column ); //add that newly filled column
+            steps.add( column ); // add that newly filled column
         }
-        
     }
     
     SequencerGrid::~SequencerGrid(){}
@@ -42,7 +41,6 @@ namespace gui
     void SequencerGrid::paint (Graphics& g)
     {
         g.fillAll (Colours::darkgrey);   // clear the background
-        
     }
     
     void SequencerGrid::resized()

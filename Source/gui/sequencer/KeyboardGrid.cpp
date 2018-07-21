@@ -16,10 +16,13 @@ namespace gui
 {
     KeyboardGrid::KeyboardGrid(const int rowCount) : _rowCount(rowCount)
     {
+        // get the midi output device for settings
+        audio::MidiOut& midiOut = audio::MidiOut::getInstance();
+        
         for(int row = 0; row < rowCount; row++)
         {
             int inverseRow = rowCount - 1 - row; // so lowest note is at the bottom
-            addAndMakeVisible ( _keys.add (new Key (inverseRow + 59)) );
+            addAndMakeVisible ( _keys.add (new Key (inverseRow + midiOut.getSetting("startnote")) ));
         }
     }
     

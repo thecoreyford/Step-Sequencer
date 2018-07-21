@@ -14,11 +14,11 @@ namespace audio
 {
     Audio::Audio()
     {
-        //setup audio processing
+        // setup audio processing
         _audioDeviceManager.initialiseWithDefaultDevices (0, 2);
         _audioDeviceManager.addAudioCallback (this);
         
-        //setup midi input
+        // setup midi input
         _audioDeviceManager.setMidiInputEnabled("step-sequencer", true);
         _audioDeviceManager.addMidiInputCallback("step-sequencer", this);
     }
@@ -40,14 +40,14 @@ namespace audio
                                        int numOutputChannels,
                                        int numSamples)
     {
-        //const float *inL = inputChannelData[0];
-        //const float *inR = inputChannelData[1];
+        // const float *inL = inputChannelData[0];
+        // const float *inR = inputChannelData[1];
         float *outL = outputChannelData[0];
         float *outR = outputChannelData[1];
         
-        //at buffer rate
+        // at buffer rate
         
-        //at sample rate
+        // at sample rate
         while(numSamples--)
         {
             *outL = 0;

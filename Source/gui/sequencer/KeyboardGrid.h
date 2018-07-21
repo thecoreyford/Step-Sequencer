@@ -12,6 +12,7 @@
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
 #include "../widgets/Key.h"
+#include "../../audio/MidiOut.h"
 
 //==============================================================================
 

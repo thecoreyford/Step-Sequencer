@@ -30,7 +30,7 @@ namespace audio
                                     const int x,
                                     const int y) override;
         
-        void setPlayback (String setting, int value);
+        float getSetting (String setting) const;
         
     private:
         MidiOut(); // must call get instance
@@ -38,9 +38,12 @@ namespace audio
         MidiOut(const MidiOut&); // cannot copy
         void operator= (const MidiOut& ); //cannot copy
         
+        HashMap<String, float> _playbackSettings;
+
         juce::MidiOutput* _midiOutput;
         MidiMessageSequence _eventList;
         
-        HashMap<String, float> _playbackSettings;
+        void setPlayback (String setting, float value);
+
     };
 } //namespace audio

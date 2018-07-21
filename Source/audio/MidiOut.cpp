@@ -18,23 +18,7 @@ namespace audio
         return instance;
     }
     
-    MidiOut::MidiOut()
-    {
-        // create our midi output interface
-        _midiOutput = juce::MidiOutput::createNewDevice("step-sequencer");
-        
-        // initalise default playback settings
-        setPlayback("tempo", 120.0f);
-        setPlayback("startnote", 60.0f);
-    }
-    
-    MidiOut::~MidiOut()
-    {
-        _midiOutput->clearAllPendingMessages();
-        delete _midiOutput;
-    }
-    
-    void MidiOut::setPlayback (String setting, int value)
+    void MidiOut::setPlayback (String setting, float value)
     {
         _playbackSettings.set(setting.toLowerCase().removeCharacters(" "),
                               value);
@@ -51,13 +35,43 @@ namespace audio
         const float secPerMin = 60.0f;
         const float beatsInABar = 4;
         const float increment = _playbackSettings["tempo"]
-                                / secPerMin
-                                / beatsInABar;
+        / secPerMin
+        / beatsInABar;
         
         // calculate the note value for each step
-        DBG(row);
-//        DBG(increment * column);
+        const int noteNumber = _playbackSettings["startnote"] + row;
         
+//        DBG(noteNumber);
+        //        DBG(increment * column);
+        
+    }
+    
+    float MidiOut::getSetting (String setting) const
+    {
+        setting = setting.toLowerCase().removeCharacters(" ");
+        
+        // The setting you were looking for does not exist!!!
+        jassert(_playbackSettings.contains(setting));
+        
+        return _playbackSettings[setting];
+    }
+    
+    //==========================================================================
+    
+    MidiOut::MidiOut()
+    {
+        // create our midi output interface
+        _midiOutput = juce::MidiOutput::createNewDevice("step-sequencer");
+        
+        // initalise default playback settings
+        setPlayback("tempo", 120.0f);
+        setPlayback("startnote", 60.0f);
+    }
+    
+    MidiOut::~MidiOut()
+    {
+        _midiOutput->clearAllPendingMessages();
+        delete _midiOutput;
     }
     
 } //namespace audio
