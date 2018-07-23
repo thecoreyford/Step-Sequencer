@@ -1,7 +1,7 @@
 dependencies: \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/MidiOut.cpp \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/MidiOut.h \
-  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/../gui/widgets/CartesianToggleButton.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/MidiEventList.h \
   ../../JuceLibraryCode/../JuceLibraryCode/JuceHeader.h \
   ../../JuceLibraryCode/AppConfig.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_basics/juce_audio_basics.h \
@@ -466,4 +466,5 @@ dependencies: \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_opengl/utils/juce_OpenGLAppComponent.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/juce_video.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/playback/juce_VideoComponent.h \
-  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/capture/juce_CameraDevice.h
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/capture/juce_CameraDevice.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/audio/../gui/widgets/CartesianToggleButton.h

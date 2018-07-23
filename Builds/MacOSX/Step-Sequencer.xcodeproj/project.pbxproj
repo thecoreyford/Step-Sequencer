@@ -23,6 +23,7 @@
 		57A1908278357BC7E02E9E2D = {isa = PBXBuildFile; fileRef = 4DFEECF8147BAC563D7722DB; };
 		31604A41AF793C3AD42F9546 = {isa = PBXBuildFile; fileRef = 02C72F28B60E9F3C6FBB4F0F; };
 		AB92A8828AD2516143AECE01 = {isa = PBXBuildFile; fileRef = AE6BB54AFAFA1BEF5D0F24A8; };
+		EDD0350F44E79042953E2A57 = {isa = PBXBuildFile; fileRef = 7C20500C981F8CB465DACC78; };
 		15C3AD08E4E593338D87091F = {isa = PBXBuildFile; fileRef = 859F72A09FEF95D405236AB1; };
 		3B5E2E4E642438411908D42E = {isa = PBXBuildFile; fileRef = 71ED86BCE15A7FE89DD14F70; };
 		8F8621A65366F512795C99EB = {isa = PBXBuildFile; fileRef = 4D47D7251666D0BF8CB6758A; };
@@ -79,6 +80,7 @@
 		71ED86BCE15A7FE89DD14F70 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PlayBackControls.cpp; path = ../../Source/gui/controller/PlayBackControls.cpp; sourceTree = "SOURCE_ROOT"; };
 		73F61FE46BE9793CD5BEE356 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_opengl.mm"; path = "../../JuceLibraryCode/include_juce_opengl.mm"; sourceTree = "SOURCE_ROOT"; };
 		761995573EF53CBE5BC34AEE = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SynthesiserGUI.h; path = ../../Source/gui/controller/SynthesiserGUI.h; sourceTree = "SOURCE_ROOT"; };
+		7C20500C981F8CB465DACC78 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MidiEventList.cpp; path = ../../Source/audio/MidiEventList.cpp; sourceTree = "SOURCE_ROOT"; };
 		7E56C06AC7BFBD30B8E24E21 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_data_structures.mm"; path = "../../JuceLibraryCode/include_juce_data_structures.mm"; sourceTree = "SOURCE_ROOT"; };
 		82D0D96EE840FBE60952F00C = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = MainComponent.cpp; path = ../../Source/gui/MainComponent.cpp; sourceTree = "SOURCE_ROOT"; };
 		859F72A09FEF95D405236AB1 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ControllerGUI.cpp; path = ../../Source/gui/controller/ControllerGUI.cpp; sourceTree = "SOURCE_ROOT"; };
@@ -105,6 +107,7 @@
 		DE4107E8A1BC5F1171CF105A = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_core"; path = "/Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_core"; sourceTree = "<absolute>"; };
 		DE72EE51266AB67F27AB62D7 = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		DF1C1132ACD8C318552E920F = {isa = PBXFileReference; lastKnownFileType = file; name = "juce_graphics"; path = "/Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_graphics"; sourceTree = "<absolute>"; };
+		E1BA6BAA69A934F9211D363F = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MidiEventList.h; path = ../../Source/audio/MidiEventList.h; sourceTree = "SOURCE_ROOT"; };
 		E4968C40F77978CD83370592 = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = "include_juce_graphics.mm"; path = "../../JuceLibraryCode/include_juce_graphics.mm"; sourceTree = "SOURCE_ROOT"; };
 		EB68DDBFB3827A15DD78F7A7 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MidiOut.h; path = ../../Source/audio/MidiOut.h; sourceTree = "SOURCE_ROOT"; };
 		EC9B0347EF4A3FFA832E6146 = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppConfig.h; path = ../../JuceLibraryCode/AppConfig.h; sourceTree = "SOURCE_ROOT"; };
@@ -117,7 +120,9 @@
 					02C72F28B60E9F3C6FBB4F0F,
 					FFCF3384148BE0BFAEDB09F6,
 					AE6BB54AFAFA1BEF5D0F24A8,
-					EB68DDBFB3827A15DD78F7A7, ); name = audio; sourceTree = "<group>"; };
+					EB68DDBFB3827A15DD78F7A7,
+					7C20500C981F8CB465DACC78,
+					E1BA6BAA69A934F9211D363F, ); name = audio; sourceTree = "<group>"; };
 		CE4F7FFFFBCAF33F09B9B7F9 = {isa = PBXGroup; children = (
 					859F72A09FEF95D405236AB1,
 					584696DF3EEFC6FEE71E6490,
@@ -357,6 +362,7 @@
 		BFC484C462F126EC450F291D = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (
 					31604A41AF793C3AD42F9546,
 					AB92A8828AD2516143AECE01,
+					EDD0350F44E79042953E2A57,
 					15C3AD08E4E593338D87091F,
 					3B5E2E4E642438411908D42E,
 					8F8621A65366F512795C99EB,

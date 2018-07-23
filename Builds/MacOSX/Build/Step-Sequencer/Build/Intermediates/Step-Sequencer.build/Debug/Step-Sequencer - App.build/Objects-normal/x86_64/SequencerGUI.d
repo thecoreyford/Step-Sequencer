@@ -469,5 +469,6 @@ dependencies: \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/SequencerGrid.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../widgets/CartesianToggleButton.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../../audio/MidiOut.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../../audio/MidiEventList.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/KeyboardGrid.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../widgets/Key.h

@@ -10,19 +10,14 @@
 
 #pragma once
 
+#include "MidiEventList.h"
 #include "../gui/widgets/CartesianToggleButton.h"
 #include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
 
-//TODO(corey2.ford@live.uwe.ac.uk): seperate event list into a seperate class
-//                                      such as a scheduler type arrangement.
-
 namespace audio
 {
-    
-    typedef Array<MidiMessage> EventList;
-    
     /**
      *  MidiOut singleton for scheduling and playback of midi messages.
      */
@@ -83,7 +78,7 @@ namespace audio
         /** Pointer for the sequencers virtual midi output device. */
         juce::MidiOutput* _midiOutput;
         /** The list of events ready for playback. */
-        EventList _eventList;
+        MidiEventList _eventList;
         
         /**
          * Wrapper for setting parameters for each playback setting. 
@@ -93,53 +88,5 @@ namespace audio
         void setPlayback (String setting, float value);
 
     };
-    
-    //==========================================================================
-    
-    /**
-     *  Class used to sort the array in order of midi messages
-     *  https://docs.juce.com/master/classArray.html
-     */
-    class MidiMessageTimestampSorter
-    {
-    public:
-        static int compareElements(MidiMessage a, MidiMessage b)
-        {
-            if (a.getTimeStamp() < b.getTimeStamp())
-                return -1;
-            else if (a.getTimeStamp() > b.getTimeStamp())
-                return 1;
-            else // if a == b
-                return 0;
-        }
-    };
-    
-    /**
-     *  Overloaded equals operator for 2 midi messages.
-     *  @param lhs is the leftmost midi message to be evaluated. 
-     *  @param rhs is the rightmost midi message to be evaluated.
-     *  @returns true if both midi messages are equivalents.
-     */
-    static bool operator == (const MidiMessage & lhs, const MidiMessage & rhs)
-    {
-        if(lhs.getRawDataSize() != rhs.getRawDataSize())
-        {
-            return false;
-        }
         
-        const uint8* lhsPtr = lhs.getRawData();
-        const uint8* rhsPtr = rhs.getRawData();
-        for(int i = 0; i < lhs.getRawDataSize(); ++i)
-        {
-            // equivalents to lhsPtr[i] & rhsPtr[i] - what aren't defined :(
-            if( *(lhsPtr+i) != *(rhsPtr+i) )
-            {
-                return false;
-            }
-        }
-        
-        return true;
-        
-    }
-    
 } //namespace audio

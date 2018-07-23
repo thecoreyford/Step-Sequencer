@@ -12,6 +12,22 @@
 
 namespace audio
 {
+    MidiOut::MidiOut()
+    {
+        // create our midi output interface
+        _midiOutput = juce::MidiOutput::createNewDevice("step-sequencer");
+        
+        // initalise default playback settings
+        setPlayback("tempo", 120.0f);
+        setPlayback("startnote", 60.0f);
+    }
+    
+    MidiOut::~MidiOut()
+    {
+        _midiOutput->clearAllPendingMessages();
+        delete _midiOutput;
+    }
+    
     MidiOut& MidiOut::getInstance()
     {
         static MidiOut instance;
@@ -56,57 +72,24 @@ namespace audio
         // calculate the note value for each step
         const int noteNumber = _playbackSettings["startnote"] + row;
         
-        // place into a midi message's
-        //TODO(corey2.ford@live.uwe.ac.uk): left off here
+        // place converted values into a midi message
         MidiMessage newMessageOn = MidiMessage::noteOn(1, noteNumber, (uint8)98);
         newMessageOn.addToTimeStamp(increment * column);
         MidiMessage newMessageOff = MidiMessage::noteOff(1, noteNumber, (uint8)98);
         newMessageOff.addToTimeStamp(increment * (column+1));
         
-        MidiMessageTimestampSorter sorter;
-        
+        // modify the event list
         if(state == true)
         {
-            _eventList.add(newMessageOn);
-            _eventList.add(newMessageOff);
-            _eventList.sort(sorter);
-            
-            MidiMessage test1 = MidiMessage::noteOff(1, 60, (uint8)98);
-            MidiMessage test2 = MidiMessage::noteOff(1, 64, (uint8)98);
-            
+            _eventList.addMidiEvent(newMessageOn);
+            _eventList.addMidiEvent(newMessageOff);
         }
         else
         {
             // as all values are gaurenteed to be unique on a grid we can...
-            for(int i = 0; i < _eventList.size(); i++)
-            {
-                if(_eventList.getReference(i) == newMessageOn)
-                    _eventList.remove(i);
-                
-                if(_eventList.getReference(i) == newMessageOff)
-                    _eventList.remove(i);
-            }
-            
+            _eventList.removeMidiEvent(newMessageOn);
+            _eventList.removeMidiEvent(newMessageOff);
         }
-        
-    }
-    
-    //==========================================================================
-    
-    MidiOut::MidiOut()
-    {
-        // create our midi output interface
-        _midiOutput = juce::MidiOutput::createNewDevice("step-sequencer");
-        
-        // initalise default playback settings
-        setPlayback("tempo", 120.0f);
-        setPlayback("startnote", 60.0f);
-    }
-    
-    MidiOut::~MidiOut()
-    {
-        _midiOutput->clearAllPendingMessages();
-        delete _midiOutput;
     }
     
 } //namespace audio
