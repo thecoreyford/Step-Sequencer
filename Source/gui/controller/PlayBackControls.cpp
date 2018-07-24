@@ -20,11 +20,24 @@ namespace gui
         // initialise any special settings that your component needs.
         audio::MidiOut& midiOut = audio::MidiOut::getInstance();
         
+        play.setComponentID("stop");
         play.setButtonText("play");
-        play.setComponentID("play");
         play.addListener(&midiOut);
+        play.onClick = [this]
+        {
+            if(play.getComponentID() == "play")
+            {
+                play.setComponentID("stop");
+                play.setButtonText("play");
+            }
+            else // if componentID == "stop"
+            {
+                play.setComponentID("play");
+                play.setButtonText("stop");
+            }
+        };
+
         addAndMakeVisible(play);
-        
     }
     
     PlayBackControls::~PlayBackControls()

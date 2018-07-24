@@ -20,9 +20,7 @@ namespace gui
         addAndMakeVisible(_synthGUI);
     }
     
-    ControllerGUI::~ControllerGUI()
-    {
-    }
+    ControllerGUI::~ControllerGUI(){}
     
     void ControllerGUI::paint (Graphics& g)
     {

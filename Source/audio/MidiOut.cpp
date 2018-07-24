@@ -124,11 +124,16 @@ namespace audio
     
     void MidiOut::buttonClicked (Button* button)
     {
-        if(button->getComponentID() == "play")
+        if(button->getComponentID() == "stop") // to be played
         {
             playPosition = 0;
             timeStart.set(Time::getMillisecondCounterHiRes());
             startTimer(1);
+        }
+        
+        if(button->getComponentID() == "play") // to be stopped
+        {
+            stopTimer();
         }
     }
     
