@@ -21,14 +21,6 @@ namespace audio
     
     void MidiEventList::addMidiEvent(const MidiMessage& midiMessage)
     {
-        bool found = false;
-        for(int i = 0; i < _eventList.size(); ++i)
-        {
-            if(_eventList[i] == midiMessage)
-                found = true;
-        }
-        
-        if(found == false)
             _eventList.add(midiMessage);
             _eventList.sort(_sorter);
     }
@@ -37,7 +29,7 @@ namespace audio
     {
         for(int i = 0; i < _eventList.size(); i++)
         {
-            if(_eventList.getReference(i) == midiMessage)
+            if(_eventList[i] == midiMessage)
             {
                 _eventList.remove(i);
                 break;  // leave the list
@@ -51,6 +43,19 @@ namespace audio
     {
         return _eventList;
     }
-
+    
+    void MidiEventList::printMe()
+    {
+        DBG("==========");
+        for(int i = 0; i < _eventList.size(); i++)
+        {
+            String output = (String)_eventList[i].getTimeStamp() + ", ";
+            output += (String)(int)_eventList[i].isNoteOn() + ", ";
+            output += (String)_eventList[i].getNoteNumber() + ", ";
+            DBG(output);
+        }
+        DBG("==========");
+        
+    }
     
 } //namespace audio

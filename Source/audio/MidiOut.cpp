@@ -90,6 +90,8 @@ namespace audio
             _eventList.removeMidiEvent(newMessageOn);
             _eventList.removeMidiEvent(newMessageOff);
         }
+        
+        _eventList.printMe();
     }
     
 } //namespace audio

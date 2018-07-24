@@ -79,6 +79,8 @@ namespace audio
          *  @param The array of midi messages holding all events.
          */
         Array<MidiMessage> & getArray();
+        
+        void printMe(); //TODO(corey2.ford@live.uwe.ac.uk): remove after testing
                 
     private:
         
@@ -98,11 +100,13 @@ namespace audio
      */
     static bool operator == (const MidiMessage & lhs, const MidiMessage & rhs)
     {
+        // check messages are the same size
         if(lhs.getRawDataSize() != rhs.getRawDataSize())
         {
             return false;
         }
         
+        // check each byte matches
         const uint8* lhsPtr = lhs.getRawData();
         const uint8* rhsPtr = rhs.getRawData();
         for(int i = 0; i < lhs.getRawDataSize(); ++i)
@@ -112,6 +116,12 @@ namespace audio
             {
                 return false;
             }
+        }
+        
+        // also check timestamps
+        if(lhs.getTimeStamp() != rhs.getTimeStamp())
+        {
+            return false;
         }
         
         return true;
