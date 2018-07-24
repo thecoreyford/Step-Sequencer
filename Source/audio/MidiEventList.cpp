@@ -39,9 +39,14 @@ namespace audio
         _eventList.sort(_sorter);
     }
     
-    Array<MidiMessage> & MidiEventList::getArray()
+    MidiMessage MidiEventList::getMidiEvent(const int index)
     {
-        return _eventList;
+        return _eventList[index];
+    }
+    
+    int MidiEventList::getSize()
+    {
+        return _eventList.size();
     }
     
     void MidiEventList::printMe()

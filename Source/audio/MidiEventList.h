@@ -18,8 +18,6 @@
 //                                     Haven't implemented as not needed for this
 //                                     project but would make the class more reusable.
 
-
-//TODO(corey2.ford@live.uwe.ac.uk): test this works!!!!
 namespace audio
 {
     /**
@@ -75,10 +73,15 @@ namespace audio
         void removeMidiEvent(const MidiMessage& midiMessage);
         
         /**
-         *  Returns the event list. 
-         *  @param The array of midi messages holding all events.
+         *  Returns the event at the index passed of the list.
+         *  @param The index of the midi valude ot be found.
          */
-        Array<MidiMessage> & getArray();
+        MidiMessage getMidiEvent(const int index);
+        
+        /**
+         *  Returns the size of the event list.
+         */
+        int getSize();
         
         void printMe(); //TODO(corey2.ford@live.uwe.ac.uk): remove after testing
                 

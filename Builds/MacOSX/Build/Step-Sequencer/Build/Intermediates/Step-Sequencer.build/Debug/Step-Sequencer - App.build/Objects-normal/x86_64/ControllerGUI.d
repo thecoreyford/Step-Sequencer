@@ -467,4 +467,7 @@ dependencies: \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/playback/juce_VideoComponent.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/capture/juce_CameraDevice.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/PlayBackControls.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/MidiOut.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/MidiEventList.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/../gui/widgets/CartesianToggleButton.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/SynthesiserGUI.h

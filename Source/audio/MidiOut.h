@@ -1,12 +1,12 @@
 /*
-  ==============================================================================
-
-    MidiOut.h
-    Created: 20 Jul 2018 4:16:23pm
-    Author:  Corey Ford
-
-  ==============================================================================
-*/
+ ==============================================================================
+ 
+ MidiOut.h
+ Created: 20 Jul 2018 4:16:23pm
+ Author:  Corey Ford
+ 
+ ==============================================================================
+ */
 
 #pragma once
 
@@ -21,7 +21,9 @@ namespace audio
     /**
      *  MidiOut singleton for scheduling and playback of midi messages.
      */
-    class MidiOut : public gui::CartesianToggleButton::Listener
+    class MidiOut : public gui::CartesianToggleButton::Listener,
+    public Timer,
+    public Button::Listener
     {
     public:
         
@@ -48,6 +50,17 @@ namespace audio
          */
         float getSetting(String setting) const;
         
+        /**
+         *  Timer outputting midi messages from the event list based on timecode.
+         */
+        void timerCallback() override;
+        
+        /**
+         *  Callback for button clicks.
+         *  @param the button that has been clicked.
+         */
+        void buttonClicked (Button* button) override;
+        
     private:
         /**
          * Private constructor. Must call get instance.
@@ -56,7 +69,7 @@ namespace audio
         MidiOut();
         
         /**
-         * Private Destructor. 
+         * Private Destructor.
          * Clears all pending midi out events and destroys the device.
          */
         ~MidiOut();
@@ -71,22 +84,25 @@ namespace audio
          * Private copy operator - cannot to copy object.
          * @param reference for another MidiOut
          */
-        void operator= (const MidiOut& ); //cannot copy
+        void operator= (const MidiOut&);
         
         /** Hash map for each playback setting parameters.*/
         HashMap<String, float> _playbackSettings;
         /** Pointer for the sequencers virtual midi output device. */
         juce::MidiOutput* _midiOutput;
-        /** The list of events ready for playback. */
-        MidiEventList _eventList;
+
         
         /**
-         * Wrapper for setting parameters for each playback setting. 
+         * Wrapper for setting parameters for each playback setting.
          * @param  setting is the label for a syntheisiser param.
          * @param  value is the value for the passed parameter.
          */
         void setPlayback (String setting, float value);
-
-    };
         
+        /** The list of events ready for playback. */
+        MidiEventList _eventList;
+        Atomic<int> playPosition;
+        Atomic<double> timeStart;
+    };
+    
 } //namespace audio

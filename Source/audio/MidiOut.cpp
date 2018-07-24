@@ -93,5 +93,43 @@ namespace audio
         
         _eventList.printMe();
     }
+
+    //==========================================================================
+    
+    void MidiOut::timerCallback()
+    {
+        // figure out how much time has elapsed
+        double elapsedTime = Time::getMillisecondCounterHiRes() - timeStart.get();
+        
+        // if it is the appropriate amount of time...
+        if(elapsedTime >= _eventList.getMidiEvent(playPosition.get()).getTimeStamp())
+        {
+            // output the message
+            _midiOutput->sendMessageNow(_eventList.getMidiEvent(playPosition.get()));
+            
+            // increment to the next play position
+            playPosition.set(playPosition.get() + 1);
+        }
+        
+        // wrap around the play position
+        if(playPosition.get() == _eventList.getSize())
+        {
+            playPosition.set(0);
+            timeStart.set(Time::getMillisecondCounterHiRes());
+        }
+        
+    }
+    
+    //==========================================================================
+    
+    void MidiOut::buttonClicked (Button* button)
+    {
+        if(button->getComponentID() == "play")
+        {
+            playPosition = 0;
+            timeStart.set(Time::getMillisecondCounterHiRes());
+            startTimer(1);
+        }
+    }
     
 } //namespace audio

@@ -18,6 +18,12 @@ namespace gui
     {
         // In your constructor, you should add any child components, and
         // initialise any special settings that your component needs.
+        audio::MidiOut& midiOut = audio::MidiOut::getInstance();
+        
+        play.setButtonText("play");
+        play.setComponentID("play");
+        play.addListener(&midiOut);
+        addAndMakeVisible(play);
         
     }
     
@@ -32,9 +38,7 @@ namespace gui
     
     void PlayBackControls::resized()
     {
-        // This method is where you should set the bounds of any child
-        // components that your component contains..
-        
+        play.setBounds(getLocalBounds());
     }
     
 }

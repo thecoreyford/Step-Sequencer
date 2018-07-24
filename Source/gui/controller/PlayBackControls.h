@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include "../../audio/MidiOut.h"
 #include "../../../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
@@ -29,6 +30,7 @@ namespace gui
         void resized() override;
         
     private:
+        TextButton play;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PlayBackControls)
     };
     
