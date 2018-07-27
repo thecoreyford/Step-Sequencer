@@ -33,6 +33,8 @@ namespace gui
         
         bool getState() const;
         
+        void setState(const bool state);
+        
         //======================================================================
         
         class Listener

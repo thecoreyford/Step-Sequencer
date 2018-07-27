@@ -74,9 +74,9 @@ namespace audio
         const int noteNumber = _playbackSettings["startnote"] + row;
         
         // place converted values into a midi message
-        MidiMessage newMessageOn = MidiMessage::noteOn(1, noteNumber, (uint8)98);
+        MidiMessage newMessageOn = MidiMessage::noteOn((row+1), noteNumber, (uint8)98);
         newMessageOn.addToTimeStamp(increment * column);
-        MidiMessage newMessageOff = MidiMessage::noteOff(1, noteNumber, (uint8)98);
+        MidiMessage newMessageOff = MidiMessage::noteOff((row+1), noteNumber, (uint8)98);
         newMessageOff.addToTimeStamp(increment * (column+1));
         
         // modify the event list

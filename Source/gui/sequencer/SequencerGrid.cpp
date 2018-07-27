@@ -16,7 +16,14 @@ namespace gui
 {
     SequencerGrid::SequencerGrid(const int rowCount, const int columnCount):
     _rowCount(rowCount), _columnCount(columnCount)
-    {        
+    {
+        // Rows are assigned to the corresponding midi channel,
+        // so you can only have between 0 to 16 rows.
+        jassert(_rowCount > 0 && _rowCount < 16);
+        
+        // You must have at least on column.
+        jassert(_columnCount > 0);
+        
         Array< std::shared_ptr<CartesianToggleButton> > column;
         for(int col = 0; col < columnCount; col++)
         {

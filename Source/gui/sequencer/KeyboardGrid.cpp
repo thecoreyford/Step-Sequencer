@@ -26,9 +26,7 @@ namespace gui
         }
     }
     
-    KeyboardGrid::~KeyboardGrid()
-    {
-    }
+    KeyboardGrid::~KeyboardGrid(){}
     
     void KeyboardGrid::paint (Graphics& g)
     {

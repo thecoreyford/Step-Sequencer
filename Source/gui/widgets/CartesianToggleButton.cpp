@@ -51,6 +51,11 @@ namespace gui
         return _state;
     }
     
+    void CartesianToggleButton::setState(const bool state)
+    {
+        _state = state;
+    }
+    
     //==========================================================================
     
     void CartesianToggleButton::addListener (Listener* listener)

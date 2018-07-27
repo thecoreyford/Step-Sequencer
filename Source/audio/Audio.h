@@ -12,6 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "MidiOut.h"
+#include "../synthesis/Oscillator.h"
 #include "../synthesis/OscillatorTypes.h"
 
 //==============================================================================
@@ -73,8 +74,10 @@ namespace audio
     private:
         /** The audio device manager handling all ins & outs!*/
         AudioDeviceManager _audioDeviceManager;
-        synthesis::osc::Triangle sine;
         
+        static const int MIDI_CHANNEL_TOTAL = 16;
+        Atomic<synthesis::osc::Oscillator*> osc[MIDI_CHANNEL_TOTAL];
+        synthesis::osc::Sine triangle[MIDI_CHANNEL_TOTAL];
     };
     
 } //namespace audio

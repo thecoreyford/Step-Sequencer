@@ -30,7 +30,7 @@ public:
         // This method is where you should put your application's initialisation code..
         
         // Call the midi out singleton instance first so that
-        //   the constructor creates output before audio.
+        //   the constructor creates midi output before audio.
         audio::MidiOut::getInstance();
         _audio.setupMidiInput("step-sequencer"); ///< add the midi output device
         

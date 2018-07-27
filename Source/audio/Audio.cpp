@@ -14,12 +14,15 @@ namespace audio
 {
     Audio::Audio()
     {
+        // setup oscillators
+        for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+        {
+            osc[i].set(&triangle[i]);
+        }
+        
         // setup audio processing
         _audioDeviceManager.initialiseWithDefaultDevices (0, 2);
         _audioDeviceManager.addAudioCallback (this);
-        
-        sine.setSampleRate(44100.0);
-        sine.setAmplitude(0.0);
     }
     
     Audio::~Audio()
@@ -42,13 +45,25 @@ namespace audio
         float *outR = outputChannelData[1];
         
         // at buffer rate
-        if ( MidiOut::getInstance().getPlaying() == false )
-            sine.setAmplitude(0.0f);
-            
+        for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+        {
+            if ( MidiOut::getInstance().getPlaying() == false )
+                osc[i].get()->setAmplitude(0.0f);
+        }
+      
+        float out = 0.0f;
+        
         // at sample rate
         while(numSamples--)
         {
-            float out = sine.getSample();
+            // accumulate all oscillators
+            for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+            {
+                out += osc[i].get()->getSample();
+            }
+            out *= 1.0f / MIDI_CHANNEL_TOTAL;
+            
+            // write to output
             *outL = out;
             *outR = out;
             
@@ -74,15 +89,15 @@ namespace audio
     {
         if( message.isNoteOn() )
         {
-            sine.setAmplitude( message.getFloatVelocity() );
+            osc[message.getChannel()-1].get()->setAmplitude( message.getFloatVelocity() );
         }
         else
         {
-            sine.setAmplitude(0.0f);
+            osc[message.getChannel()-1].get()->setAmplitude(0.0f);
         }
         
         float freq = MidiMessage::getMidiNoteInHertz( message.getNoteNumber() );
-        sine.setFrequency(freq);
+        osc[message.getChannel()-1].get()->setFrequency(freq);
     }
     
 } //namespace audio
