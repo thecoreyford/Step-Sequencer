@@ -16,21 +16,22 @@ namespace gui
 {
     SequencerGUI::SequencerGUI()
     {
-        _keyGrid = new KeyboardGrid(_rowCount);
-        _seqGrid = new SequencerGrid(_rowCount, _columnCount);
-        addAndMakeVisible(_seqGrid);
-        addAndMakeVisible(_keyGrid);
+        _keyGrid = std::make_unique<KeyboardGrid>(_rowCount);
+        _seqGrid = std::make_unique<SequencerGrid>(_rowCount, _columnCount);
+        addAndMakeVisible(_seqGrid.get());
+        addAndMakeVisible(_keyGrid.get());
+        
+        audio::MidiOut& midiOut = audio::MidiOut::getInstance();
+        midiOut.addListener(this);
     }
     
     SequencerGUI::~SequencerGUI()
     {
-        delete _keyGrid; //TODO(corey2.ford@live.uwe.ac.uk): smart pointers?
-        delete _seqGrid;
     }
     
     void SequencerGUI::paint (Graphics& g)
     {
-        g.fillAll (Colours::red);   // clear the background
+        g.fillAll (Colours::darkslateblue);   // clear the background
     }
     
     void SequencerGUI::resized()
@@ -42,5 +43,17 @@ namespace gui
         
         _seqGrid->setBounds(sequencerRectangle);
         _keyGrid->setBounds(keyboardRectangle);
+    }
+    
+    void SequencerGUI::playbackStateChanged(bool isPlaying)
+    {
+        if(isPlaying)
+        {
+            _seqGrid.get()->setVisible(false);
+        }
+        else
+        {
+            _seqGrid.get()->setVisible(true);
+        }
     }
 }

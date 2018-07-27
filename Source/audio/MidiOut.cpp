@@ -90,8 +90,6 @@ namespace audio
             _eventList.removeMidiEvent(newMessageOn);
             _eventList.removeMidiEvent(newMessageOff);
         }
-        
-        _eventList.printMe();
     }
 
     //==========================================================================
@@ -127,12 +125,16 @@ namespace audio
         if(button->getComponentID() == "stop") // to be played
         {
             playPosition = 0;
+            if(_listener != nullptr)
+                _listener->playbackStateChanged(true);
             timeStart.set(Time::getMillisecondCounterHiRes());
             startTimer(1);
         }
         
         if(button->getComponentID() == "play") // to be stopped
         {
+            if(_listener != nullptr)
+                _listener->playbackStateChanged(false);
             stopTimer();
         }
     }

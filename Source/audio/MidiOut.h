@@ -22,8 +22,8 @@ namespace audio
      *  MidiOut singleton for scheduling and playback of midi messages.
      */
     class MidiOut : public gui::CartesianToggleButton::Listener,
-    public Timer,
-    public Button::Listener
+                    public Timer,
+                    public Button::Listener
     {
     public:
         
@@ -61,7 +61,33 @@ namespace audio
          */
         void buttonClicked (Button* button) override;
         
+        /**
+         *  Listener for output changes.
+         */
+        class Listener
+        {
+        public:
+            /**
+             *  Virtual destructor.
+             */
+            virtual ~Listener(){}
+            
+            /**
+             *  Alerts when the playback has changed. 
+             *  @param  if the sequencer is currently playing.
+             */
+            virtual void playbackStateChanged(bool isPlaying) = 0;
+        };
+        
+        /**
+         *  Setter for the output listener.
+         *  @param A pointer to the listener.
+         */
+        void addListener(Listener* listener) { _listener = listener; }
+        
     private:
+        
+        Listener* _listener;
         /**
          * Private constructor. Must call get instance.
          * Initialises the virtual midi output device & playback settings.
@@ -90,7 +116,6 @@ namespace audio
         HashMap<String, float> _playbackSettings;
         /** Pointer for the sequencers virtual midi output device. */
         juce::MidiOutput* _midiOutput;
-
         
         /**
          * Wrapper for setting parameters for each playback setting.
