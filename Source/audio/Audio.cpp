@@ -17,10 +17,6 @@ namespace audio
         // setup audio processing
         _audioDeviceManager.initialiseWithDefaultDevices (0, 2);
         _audioDeviceManager.addAudioCallback (this);
-        
-        // setup midi input
-        _audioDeviceManager.setMidiInputEnabled("step-sequencer", true);
-        _audioDeviceManager.addMidiInputCallback("step-sequencer", this);
     }
     
     Audio::~Audio()
@@ -59,6 +55,14 @@ namespace audio
     {
         
     }
+    
+    //==========================================================================
+    void Audio::setupMidiInput(String midiInput)
+    {
+        _audioDeviceManager.setMidiInputEnabled(midiInput, true);
+        _audioDeviceManager.addMidiInputCallback(midiInput, this);
+    }
+    
     
     void Audio::handleIncomingMidiMessage (MidiInput* source,
                                            const MidiMessage& message)

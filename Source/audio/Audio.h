@@ -66,6 +66,8 @@ namespace audio
         virtual void handleIncomingMidiMessage (MidiInput* source,
                                                 const MidiMessage& message) override;
         
+        void setupMidiInput(String midiInput);
+        
     private:
         /** The audio device manager handling all ins & outs!*/
         AudioDeviceManager _audioDeviceManager;

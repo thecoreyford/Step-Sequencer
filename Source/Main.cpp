@@ -11,6 +11,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "gui/MainComponent.h"
 #include "audio/Audio.h"
+#include "audio/MidiOut.h"
 
 //==============================================================================
 class StepSequencerApplication  : public JUCEApplication
@@ -27,7 +28,12 @@ public:
     void initialise (const String& commandLine) override
     {
         // This method is where you should put your application's initialisation code..
-
+        
+        // Call the midi out singleton instance first so that
+        //   the constructor creates output before audio.
+        audio::MidiOut::getInstance();
+        _audio.setupMidiInput("step-sequencer"); ///< add the midi output device
+        
         _mainWindow = std::make_unique<MainWindow>(getApplicationName(), _audio);
     }
 
