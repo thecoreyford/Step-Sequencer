@@ -51,7 +51,13 @@
     <GROUP id="{B4243F1E-E5E0-C5BD-B404-180B19E85EB8}" name="Source">
       <FILE id="ZVqvhN" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
     </GROUP>
-    <GROUP id="{E002E4D7-2C10-8BB9-D913-A2777847EF2B}" name="synthesis"/>
+    <GROUP id="{E002E4D7-2C10-8BB9-D913-A2777847EF2B}" name="synthesis">
+      <FILE id="f02txE" name="Delay.h" compile="0" resource="0" file="Source/synthesis/Delay.h"/>
+      <FILE id="yaKGDE" name="Oscillator.cpp" compile="1" resource="0" file="Source/synthesis/Oscillator.cpp"/>
+      <FILE id="rJD8lR" name="Oscillator.h" compile="0" resource="0" file="Source/synthesis/Oscillator.h"/>
+      <FILE id="THKJZj" name="OscillatorTypes.h" compile="0" resource="0"
+            file="Source/synthesis/OscillatorTypes.h"/>
+    </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">

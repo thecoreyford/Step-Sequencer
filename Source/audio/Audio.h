@@ -11,6 +11,8 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
+#include "MidiOut.h"
+#include "../synthesis/OscillatorTypes.h"
 
 //==============================================================================
 
@@ -71,6 +73,8 @@ namespace audio
     private:
         /** The audio device manager handling all ins & outs!*/
         AudioDeviceManager _audioDeviceManager;
+        synthesis::osc::Triangle sine;
+        
     };
     
 } //namespace audio

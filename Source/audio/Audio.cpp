@@ -17,6 +17,9 @@ namespace audio
         // setup audio processing
         _audioDeviceManager.initialiseWithDefaultDevices (0, 2);
         _audioDeviceManager.addAudioCallback (this);
+        
+        sine.setSampleRate(44100.0);
+        sine.setAmplitude(0.0);
     }
     
     Audio::~Audio()
@@ -25,10 +28,7 @@ namespace audio
         _audioDeviceManager.removeMidiInputCallback("step-sequencer", this);
     }
     
-    void Audio::audioDeviceAboutToStart (AudioIODevice* device)
-    {
-        
-    }
+    void Audio::audioDeviceAboutToStart (AudioIODevice* device){}
     
     void Audio::audioDeviceIOCallback (const float** inputChannelData,
                                        int numInputChannels,
@@ -42,19 +42,24 @@ namespace audio
         float *outR = outputChannelData[1];
         
         // at buffer rate
-        
+        if ( MidiOut::getInstance().getPlaying() == false )
+            sine.setAmplitude(0.0f);
+            
         // at sample rate
         while(numSamples--)
         {
-            *outL = 0;
-            *outR = 0;
+            float out = sine.getSample();
+            *outL = out;
+            *outR = out;
+            
+//            inL++;
+//            inR++;
+            outL++;
+            outR++;
         }
     }
     
-    void Audio::audioDeviceStopped()
-    {
-        
-    }
+    void Audio::audioDeviceStopped(){}
     
     //==========================================================================
     void Audio::setupMidiInput(String midiInput)
@@ -67,7 +72,17 @@ namespace audio
     void Audio::handleIncomingMidiMessage (MidiInput* source,
                                            const MidiMessage& message)
     {
+        if( message.isNoteOn() )
+        {
+            sine.setAmplitude( message.getFloatVelocity() );
+        }
+        else
+        {
+            sine.setAmplitude(0.0f);
+        }
         
+        float freq = MidiMessage::getMidiNoteInHertz( message.getNoteNumber() );
+        sine.setFrequency(freq);
     }
     
 } //namespace audio

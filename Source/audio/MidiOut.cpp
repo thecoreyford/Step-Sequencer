@@ -20,6 +20,7 @@ namespace audio
         // initalise default playback settings
         setPlayback("tempo", 120.0f);
         setPlayback("startnote", 60.0f);
+        isPlaying.set(false);
     }
     
     MidiOut::~MidiOut()
@@ -125,6 +126,7 @@ namespace audio
         if(button->getComponentID() == "stop") // to be played
         {
             playPosition = 0;
+            isPlaying.set(true);
             if(_listener != nullptr)
                 _listener->playbackStateChanged(true);
             timeStart.set(Time::getMillisecondCounterHiRes());
@@ -133,6 +135,7 @@ namespace audio
         
         if(button->getComponentID() == "play") // to be stopped
         {
+            isPlaying.set(false);
             if(_listener != nullptr)
                 _listener->playbackStateChanged(false);
             stopTimer();

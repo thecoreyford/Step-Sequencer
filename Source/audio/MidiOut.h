@@ -85,6 +85,9 @@ namespace audio
          */
         void addListener(Listener* listener) { _listener = listener; }
         
+        /** Getter for retreiving playstate of midi output. */
+        bool getPlaying() const { return isPlaying.get(); }
+        
     private:
         
         Listener* _listener;
@@ -128,6 +131,7 @@ namespace audio
         MidiEventList _eventList;
         Atomic<int> playPosition;
         Atomic<double> timeStart;
+        Atomic<bool> isPlaying; 
     };
     
 } //namespace audio
