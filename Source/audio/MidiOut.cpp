@@ -109,7 +109,7 @@ namespace audio
         }
         
         // wrap around the play position
-        if(playPosition.get() >= _eventList.getSize())
+        if(playPosition.get() == _eventList.getSize())
         {
             playPosition.set(0);
             timeStart.set(Time::getMillisecondCounterHiRes());
@@ -124,12 +124,7 @@ namespace audio
         {
             // add an ending message for the length of the sequence
             _dummyMessage = MidiMessage::noteOn(1, 60, (uint8)0);
-            const float endStamp = _playbackSettings["tempo"]
-                                    * (_playbackSettings["colcount"])
-                                    / 60.0f /* secPerMin */
-                                    / 4  /* beatsInABar */
-                                    * 1000 /* for milliseconds*/;
-            _dummyMessage.setTimeStamp(endStamp);
+            _dummyMessage.setTimeStamp(_playbackSettings["colcount"]);
             _eventList.addMidiEvent(_dummyMessage);
             //TODO: left off here
             
