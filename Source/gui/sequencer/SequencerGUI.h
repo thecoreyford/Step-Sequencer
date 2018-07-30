@@ -53,7 +53,7 @@ namespace gui
         std::unique_ptr<SequencerGrid> _seqGrid;
         std::unique_ptr<KeyboardGrid> _keyGrid;
         
-        const int _rowCount = 12;
+        const int _rowCount = 16;
         const int _columnCount = 8;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequencerGUI)

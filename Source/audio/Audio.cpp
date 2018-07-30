@@ -45,12 +45,12 @@ namespace audio
         float *outR = outputChannelData[1];
         
         // at buffer rate
-        for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+        if ( MidiOut::getInstance().getPlaying() == false )
         {
-            if ( MidiOut::getInstance().getPlaying() == false )
+            for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
                 osc[i].get()->setAmplitude(0.0f);
         }
-      
+  
         float out = 0.0f;
         
         // at sample rate
@@ -87,17 +87,21 @@ namespace audio
     void Audio::handleIncomingMidiMessage (MidiInput* source,
                                            const MidiMessage& message)
     {
-        if( message.isNoteOn() )
+        if(osc[message.getChannel()-1].get() != nullptr)
         {
-            osc[message.getChannel()-1].get()->setAmplitude( message.getFloatVelocity() );
+            if( message.isNoteOn() )
+            {
+                osc[message.getChannel()-1].get()->setAmplitude( message.getFloatVelocity() );
+            }
+            else
+            {
+                osc[message.getChannel()-1].get()->setAmplitude(0.0f);
+            }
+            
+            float freq = MidiMessage::getMidiNoteInHertz( message.getNoteNumber() );
+            osc[message.getChannel()-1].get()->setFrequency(freq);
         }
-        else
-        {
-            osc[message.getChannel()-1].get()->setAmplitude(0.0f);
-        }
-        
-        float freq = MidiMessage::getMidiNoteInHertz( message.getNoteNumber() );
-        osc[message.getChannel()-1].get()->setFrequency(freq);
+
     }
     
 } //namespace audio

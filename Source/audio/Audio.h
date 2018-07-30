@@ -77,7 +77,7 @@ namespace audio
         
         static const int MIDI_CHANNEL_TOTAL = 16;
         Atomic<synthesis::osc::Oscillator*> osc[MIDI_CHANNEL_TOTAL];
-        synthesis::osc::Sine triangle[MIDI_CHANNEL_TOTAL];
+        synthesis::osc::Square triangle[MIDI_CHANNEL_TOTAL];
     };
     
 } //namespace audio

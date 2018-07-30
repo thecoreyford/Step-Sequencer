@@ -20,9 +20,7 @@ namespace gui
         addAndMakeVisible(_controller);
     }
     
-    MainComponent::~MainComponent()
-    {
-    }
+    MainComponent::~MainComponent(){}
     
     //==============================================================================
     void MainComponent::paint (Graphics& g)

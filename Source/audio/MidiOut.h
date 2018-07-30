@@ -51,6 +51,13 @@ namespace audio
         float getSetting(String setting) const;
         
         /**
+         * Wrapper for setting parameters for each playback setting.
+         * @param  setting is the label for a syntheisiser param.
+         * @param  value is the value for the passed parameter.
+         */
+        void setPlayback (String setting, float value);
+        
+        /**
          *  Timer outputting midi messages from the event list based on timecode.
          */
         void timerCallback() override;
@@ -88,6 +95,11 @@ namespace audio
         /** Getter for retreiving playstate of midi output. */
         bool getPlaying() const { return isPlaying.get(); }
         
+        /**
+         *
+         */
+        void updateTempo();
+        
     private:
         
         Listener* _listener;
@@ -120,18 +132,15 @@ namespace audio
         /** Pointer for the sequencers virtual midi output device. */
         juce::MidiOutput* _midiOutput;
         
-        /**
-         * Wrapper for setting parameters for each playback setting.
-         * @param  setting is the label for a syntheisiser param.
-         * @param  value is the value for the passed parameter.
-         */
-        void setPlayback (String setting, float value);
-        
         /** The list of events ready for playback. */
         MidiEventList _eventList;
         Atomic<int> playPosition;
         Atomic<double> timeStart;
-        Atomic<bool> isPlaying; 
+        Atomic<bool> isPlaying;
+        
+        float _increment;
+        
+        MidiMessage _dummyMessage;
     };
     
 } //namespace audio
