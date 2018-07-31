@@ -12,6 +12,7 @@
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
 #include "../../audio/MidiOut.h"
+#include "../../audio/Audio.h"
 #include "SequencerGrid.h"
 #include "KeyboardGrid.h"
 
@@ -27,7 +28,7 @@ namespace gui
     {
     public:
         /** Constructor. Makes sub components visible. */
-        SequencerGUI();
+        SequencerGUI(audio::Audio& audio);
         
         /** Destructor. Currently does nothing. */
         ~SequencerGUI();
@@ -52,6 +53,9 @@ namespace gui
     private:
         std::unique_ptr<SequencerGrid> _seqGrid;
         std::unique_ptr<KeyboardGrid> _keyGrid;
+        std::shared_ptr<AudioVisualiserComponent> _visual;
+
+        audio::Audio& _audio;
         
         const int _rowCount = 16;
         const int _columnCount = 8;

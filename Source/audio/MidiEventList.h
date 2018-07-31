@@ -17,6 +17,7 @@
 // TODO(corey2.ford@live.uwe.ac.uk): individual getters and setters!
 //                                     Haven't implemented as not needed for this
 //                                     project but would make the class more reusable.
+//                                      i.e. setVelocity, getNoteValue and so on...
 
 namespace audio
 {
@@ -89,9 +90,7 @@ namespace audio
          *  Returns the size of the event list.
          */
         int getSize() const;
-        
-        void printMe(); //TODO(corey2.ford@live.uwe.ac.uk): remove after testing
-                
+                        
     private:
         
         /** Array holding all scheduled midi messages. */

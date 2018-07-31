@@ -23,6 +23,9 @@ namespace audio
         // setup audio processing
         _audioDeviceManager.initialiseWithDefaultDevices (0, 2);
         _audioDeviceManager.addAudioCallback (this);
+        
+        // setup visualiser as null unless set
+        visualiser = nullptr;
     }
     
     Audio::~Audio()
@@ -68,6 +71,12 @@ namespace audio
             *outL = accumulator;
             *outR = accumulator;
             
+            // update visualiser
+            if(visualiser.get() != nullptr)
+            {
+                visualiser.get()->pushSample(outL, 1);
+            }
+            
             // increment to next sample in buffer
             outL++;
             outR++;
@@ -77,6 +86,7 @@ namespace audio
     void Audio::audioDeviceStopped(){}
     
     //==========================================================================
+    
     void Audio::setupMidiInput(String midiInput)
     {
         _audioDeviceManager.setMidiInputEnabled(midiInput, true);
@@ -101,6 +111,13 @@ namespace audio
             float freq = MidiMessage::getMidiNoteInHertz( message.getNoteNumber() );
             osc[message.getChannel()-1].get()->setFrequency(freq);
         }
+    }
+    
+    //==========================================================================
+    
+    void Audio::linkAudioVisualiserComponent(std::shared_ptr<AudioVisualiserComponent> av)
+    {
+        visualiser = av;
     }
     
 } //namespace audio

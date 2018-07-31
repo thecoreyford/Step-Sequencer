@@ -413,6 +413,19 @@ dependencies: \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_processors/utilities/juce_AudioParameterBool.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_processors/utilities/juce_AudioParameterChoice.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_processors/utilities/juce_AudioProcessorValueTreeState.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/juce_audio_utils.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/gui/juce_AudioDeviceSelectorComponent.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/gui/juce_AudioThumbnailBase.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/gui/juce_AudioThumbnail.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/gui/juce_AudioThumbnailCache.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/gui/juce_AudioVisualiserComponent.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/gui/juce_MidiKeyboardComponent.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/gui/juce_AudioAppComponent.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/gui/juce_BluetoothMidiDevicePairingDialogue.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/players/juce_SoundPlayer.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/players/juce_AudioProcessorPlayer.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/audio_cd/juce_AudioCDBurner.h \
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_audio_utils/audio_cd/juce_AudioCDReader.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_cryptography/juce_cryptography.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_cryptography/encryption/juce_BlowFish.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_cryptography/encryption/juce_Primes.h \

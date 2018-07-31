@@ -170,11 +170,8 @@ namespace audio
                 {
                     auto newEvent = _eventList.getMidiEvent(i);
                     newEvent.setVelocity(_playbackSettings["velocity"] / 127.0f);
-                    DBG(newEvent.getVelocity());
                     _eventList.setMidiEvent(i, newEvent);
-                    DBG(_eventList.getMidiEvent(i).getVelocity());
                 }
-
             }
         }
     }

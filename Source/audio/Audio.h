@@ -68,7 +68,13 @@ namespace audio
         virtual void handleIncomingMidiMessage (MidiInput* source,
                                                 const MidiMessage& message) override;
         
+        /**
+         * Initialises the midi input device and starts the callback.
+         * @param  The name of the midi input to be listened to.
+         */
         void setupMidiInput(String midiInput);
+        
+        void linkAudioVisualiserComponent(std::shared_ptr<AudioVisualiserComponent> av);
         
     private:
         /** The audio device manager handling all ins & outs!*/
@@ -76,7 +82,10 @@ namespace audio
         
         static const int MIDI_CHANNEL_TOTAL = 16;
         Atomic<synthesis::osc::Oscillator*> osc[MIDI_CHANNEL_TOTAL];
-        synthesis::osc::Square triangle[MIDI_CHANNEL_TOTAL];
+        synthesis::osc::Sine triangle[MIDI_CHANNEL_TOTAL];
+        
+        /** A reference to the visualiser for the audio. */
+        std::shared_ptr<AudioVisualiserComponent> visualiser;
     };
     
 } //namespace audio
