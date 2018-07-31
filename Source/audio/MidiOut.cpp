@@ -19,7 +19,8 @@ namespace audio
         
         // initalise default playback settings
         setPlayback("tempo", 120.0f);
-        updateTempo();
+        setPlayback("velocity", 90.0f);
+        preparePlayback();
         
         setPlayback("startnote", 60.0f);
         isPlaying.set(false);
@@ -68,9 +69,14 @@ namespace audio
         const int noteNumber = _playbackSettings["startnote"] + row;
         
         // place converted values into a midi message
-        MidiMessage newMessageOn = MidiMessage::noteOn((row+1), noteNumber, (uint8)98);
+        MidiMessage newMessageOn = MidiMessage::noteOn((row+1),
+                                                       noteNumber,
+                                                       (uint8)_playbackSettings["velocity"]);
         newMessageOn.addToTimeStamp(/*increment */ column);
-        MidiMessage newMessageOff = MidiMessage::noteOff((row+1), noteNumber, (uint8)98);
+        
+        MidiMessage newMessageOff = MidiMessage::noteOff((row+1),
+                                                         noteNumber,
+                                                         (uint8)0);
         newMessageOff.addToTimeStamp(/*increment */ (column+1));
         
         // modify the event list
@@ -91,9 +97,6 @@ namespace audio
     
     void MidiOut::timerCallback()
     {
-        // ensure that realtime settings have been updated
-        updateTempo();
-        
         // figure out how much time has elapsed
         double elapsedTime = Time::getMillisecondCounterHiRes() - timeStart.get();
         
@@ -105,7 +108,6 @@ namespace audio
             
             // increment to the next play position
             playPosition.set(playPosition.get() + 1);
-            DBG((String)playPosition.get());
         }
         
         // wrap around the play position
@@ -126,7 +128,9 @@ namespace audio
             _dummyMessage = MidiMessage::noteOn(1, 60, (uint8)0);
             _dummyMessage.setTimeStamp(_playbackSettings["colcount"]);
             _eventList.addMidiEvent(_dummyMessage);
-            //TODO: left off here
+            
+            // ensure that settings have been updated before playback
+            preparePlayback();
             
             // trigger settings for starting playback
             playPosition = 0;
@@ -149,14 +153,30 @@ namespace audio
     
     //==========================================================================
     
-    void MidiOut::updateTempo()
+    void MidiOut::preparePlayback()
     {
         // calculate increment length for each step
         _increment = (330.0 - _playbackSettings["tempo"])
                         / 60.0f /* secPerMin */
-                        / 4  /* beatsInABar */
+                        / _playbackSettings["colcount"]  /* beatsInABar */
                         * 1000 /* for milliseconds*/;
+        
+        // check message velocities within list
+        for(int i = 0; i < _eventList.getSize(); i++)
+        {
+            if(_eventList.getMidiEvent(i).isNoteOn())
+            {
+                if(_eventList.getMidiEvent(i).getVelocity() != (uint8)_playbackSettings["velocity"])
+                {
+                    auto newEvent = _eventList.getMidiEvent(i);
+                    newEvent.setVelocity(_playbackSettings["velocity"] / 127.0f);
+                    DBG(newEvent.getVelocity());
+                    _eventList.setMidiEvent(i, newEvent);
+                    DBG(_eventList.getMidiEvent(i).getVelocity());
+                }
+
+            }
+        }
     }
-    
     
 } //namespace audio

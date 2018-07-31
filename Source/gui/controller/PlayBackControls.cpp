@@ -55,6 +55,21 @@ namespace gui
         {
             audio::MidiOut::getInstance().setPlayback("tempo", tempo.getValue());
         };
+        
+        //======================================================================
+        
+        addAndMakeVisible(velocity);
+        velocity.setComponentID("velocity");
+        velocity.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
+        addAndMakeVisible (tempoLabel);
+        velocityLabel.setText ("velocity", dontSendNotification);
+        velocityLabel.attachToComponent (&velocity, true);
+        velocity.setRange(1.0, 127.0);
+        velocity.setValue(98.0);
+        velocity.onValueChange = [this]
+        {
+            audio::MidiOut::getInstance().setPlayback("velocity", velocity.getValue());
+        };
     }
     
     PlayBackControls::~PlayBackControls(){}
@@ -71,9 +86,15 @@ namespace gui
         
         Rectangle<int> tempoRect = getLocalBounds().removeFromRight(getLocalBounds().getWidth()
                                                                     / 2.0f);
+        tempoRect.removeFromTop(getLocalBounds().getHeight() / 2.0f);
+        
+        Rectangle<int> velocityRect = getLocalBounds().removeFromRight(getLocalBounds().getWidth()
+                                                                    / 2.0f);
+        velocityRect.removeFromBottom(getLocalBounds().getHeight() / 2.0f);
 
-        play.setBounds(playRect);
-        tempo.setBounds(tempoRect);
+        play.setBounds (playRect);
+        tempo.setBounds (tempoRect);
+        velocity.setBounds (velocityRect);
     }
     
 }

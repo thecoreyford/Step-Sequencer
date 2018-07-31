@@ -50,5 +50,5 @@ namespace osc{
         
     }; // class Oscillator
         
-}// namespace osc
+} // namespace osc
 } // namespace synthesis

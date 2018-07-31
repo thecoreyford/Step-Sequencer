@@ -39,12 +39,24 @@ namespace audio
         _eventList.sort(_sorter);
     }
     
-    MidiMessage MidiEventList::getMidiEvent(const int index)
+    MidiMessage MidiEventList::getMidiEvent(const int index) const
     {
+        // the index you are getitng is out of range!!!
+        jassert(index < getSize());
+        
         return _eventList[index];
     }
     
-    int MidiEventList::getSize()
+    void MidiEventList::setMidiEvent(const int index,
+                                     const MidiMessage& midiMessage)
+    {
+        // the index you want to set is out of range!!!
+        jassert(index < getSize());
+        
+        _eventList.set(index, midiMessage);
+    }
+    
+    int MidiEventList::getSize() const
     {
         return _eventList.size();
     }

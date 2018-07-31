@@ -59,7 +59,6 @@ namespace audio
          */
         virtual void audioDeviceStopped() override;
         
-        
         /**
          * Callback function trigger for every midi message recieved.
          * 

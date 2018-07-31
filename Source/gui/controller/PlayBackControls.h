@@ -31,8 +31,12 @@ namespace gui
         
     private:
         TextButton play;
+        
         Slider tempo;
         Label tempoLabel;
+        
+        Slider velocity;
+        Label velocityLabel;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PlayBackControls)
     };
     

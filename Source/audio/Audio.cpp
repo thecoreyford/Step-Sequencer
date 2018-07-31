@@ -39,36 +39,36 @@ namespace audio
                                        int numOutputChannels,
                                        int numSamples)
     {
-        // const float *inL = inputChannelData[0];
-        // const float *inR = inputChannelData[1];
         float *outL = outputChannelData[0];
         float *outR = outputChannelData[1];
         
-        // at buffer rate
+        // set amplitude to zero if midi isn't playing
         if ( MidiOut::getInstance().getPlaying() == false )
         {
             for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
                 osc[i].get()->setAmplitude(0.0f);
         }
   
-        float out = 0.0f;
-        
-        // at sample rate
+        float accumulator = 0.0f;
         while(numSamples--)
         {
-            // accumulate all oscillators
+            // sum all oscillators
             for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
             {
-                out += osc[i].get()->getSample();
+                accumulator += osc[i].get()->getSample();
             }
-            out *= 1.0f / MIDI_CHANNEL_TOTAL;
+            
+            // scale for no clipping
+            accumulator *= 1.0f / MIDI_CHANNEL_TOTAL;
+            
+            // test for clipping range
+            jassert(accumulator >= -1.0f && accumulator <= 1.0f);
             
             // write to output
-            *outL = out;
-            *outR = out;
+            *outL = accumulator;
+            *outR = accumulator;
             
-//            inL++;
-//            inR++;
+            // increment to next sample in buffer
             outL++;
             outR++;
         }
@@ -93,7 +93,7 @@ namespace audio
             {
                 osc[message.getChannel()-1].get()->setAmplitude( message.getFloatVelocity() );
             }
-            else
+            else // message.isNoteOff()
             {
                 osc[message.getChannel()-1].get()->setAmplitude(0.0f);
             }
@@ -101,7 +101,6 @@ namespace audio
             float freq = MidiMessage::getMidiNoteInHertz( message.getNoteNumber() );
             osc[message.getChannel()-1].get()->setFrequency(freq);
         }
-
     }
     
 } //namespace audio

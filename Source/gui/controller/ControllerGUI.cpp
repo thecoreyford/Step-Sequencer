@@ -31,12 +31,11 @@ namespace gui
     {
         Rectangle<int> playbackRectangle, synthesiserRectangle;
         playbackRectangle = synthesiserRectangle = getLocalBounds();
-        playbackRectangle.removeFromLeft(getWidth() * 0.25);
-        synthesiserRectangle.removeFromRight(getWidth() * 0.75);
+        playbackRectangle.removeFromLeft(getWidth() * 0.35);
+        synthesiserRectangle.removeFromRight(getWidth() * 0.65);
         
         _playback.setBounds(playbackRectangle);
         _synthGUI.setBounds(synthesiserRectangle);
-        
     }
     
 }//namespace gui

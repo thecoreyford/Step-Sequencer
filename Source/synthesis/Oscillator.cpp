@@ -31,7 +31,6 @@ namespace osc{
     
     Oscillator::~Oscillator(){}
     
-    
     void Oscillator::setFrequency(float frequency)
     {
         freq_ = frequency;

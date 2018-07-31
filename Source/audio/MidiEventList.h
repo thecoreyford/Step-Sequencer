@@ -76,12 +76,19 @@ namespace audio
          *  Returns the event at the index passed of the list.
          *  @param The index of the midi valude ot be found.
          */
-        MidiMessage getMidiEvent(const int index);
+        MidiMessage getMidiEvent(const int index) const;
+        
+        /**
+         *  Setter for a specfic index of the event list.
+         *  @param The index of the midi value to be found.
+         *  @param The new midi message for that index.
+         */
+        void setMidiEvent(const int index, const MidiMessage& midiMessage);
         
         /**
          *  Returns the size of the event list.
          */
-        int getSize();
+        int getSize() const;
         
         void printMe(); //TODO(corey2.ford@live.uwe.ac.uk): remove after testing
                 

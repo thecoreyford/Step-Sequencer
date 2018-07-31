@@ -95,14 +95,10 @@ namespace audio
         /** Getter for retreiving playstate of midi output. */
         bool getPlaying() const { return isPlaying.get(); }
         
-        /**
-         *
-         */
-        void updateTempo();
-        
     private:
         
         Listener* _listener;
+        
         /**
          * Private constructor. Must call get instance.
          * Initialises the virtual midi output device & playback settings.
@@ -126,6 +122,11 @@ namespace audio
          * @param reference for another MidiOut
          */
         void operator= (const MidiOut&);
+        
+        /** 
+         *  Calculates the increment required for tempo & velocity.
+         */
+        void preparePlayback();
         
         /** Hash map for each playback setting parameters.*/
         HashMap<String, float> _playbackSettings;
