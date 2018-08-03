@@ -11,6 +11,7 @@
 #pragma once
 
 #include "../../../JuceLibraryCode/JuceHeader.h"
+#include "../../audio/Audio.h"
 #include "PlayBackControls.h"
 #include "SynthesiserGUI.h"
 
@@ -25,7 +26,7 @@ namespace gui
     {
     public:
         /** Constructor. Makes sub components visible. */
-        ControllerGUI();
+        ControllerGUI(audio::Audio& audio);
         
         /** Destructor. Currently does nothing. */
         ~ControllerGUI();
@@ -40,11 +41,13 @@ namespace gui
         void resized() override;
         
     private:
+        audio::Audio& _audio;
+        
         /** The gui for playback controls. */
-        PlayBackControls _playback;
+        std::unique_ptr<PlayBackControls> _playback; //TODO: left off here - smart pointer then pass audio reference through
         
         /** The gui for the synthesiser. */
-        SynthesiserGUI _synthGUI; 
+        std::unique_ptr<SynthesiserGUI> _synthGUI;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ControllerGUI)
     };

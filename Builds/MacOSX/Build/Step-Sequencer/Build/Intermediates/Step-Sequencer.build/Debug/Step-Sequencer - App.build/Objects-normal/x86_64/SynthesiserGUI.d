@@ -478,4 +478,10 @@ dependencies: \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_opengl/utils/juce_OpenGLAppComponent.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/juce_video.h \
   /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/playback/juce_VideoComponent.h \
-  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/capture/juce_CameraDevice.h
+  /Users/coreyford/Librarys/juce-dev/JUCE-develop/modules/juce_video/capture/juce_CameraDevice.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/Audio.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/MidiOut.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/MidiEventList.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/../gui/widgets/CartesianToggleButton.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/../synthesis/Oscillator.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/controller/../../audio/../synthesis/OscillatorTypes.h

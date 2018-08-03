@@ -14,10 +14,13 @@
 
 namespace gui
 {
-    ControllerGUI::ControllerGUI()
+    ControllerGUI::ControllerGUI(audio::Audio& audio) : _audio(audio)
     {
-        addAndMakeVisible(_playback);
-        addAndMakeVisible(_synthGUI);
+        _playback = std::make_unique<PlayBackControls>();
+        _synthGUI = std::make_unique<SynthesiserGUI>(_audio);
+        
+        addAndMakeVisible(_playback.get());
+        addAndMakeVisible(_synthGUI.get());
     }
     
     ControllerGUI::~ControllerGUI(){}
@@ -34,8 +37,8 @@ namespace gui
         playbackRectangle.removeFromLeft(getWidth() * 0.35);
         synthesiserRectangle.removeFromRight(getWidth() * 0.65);
         
-        _playback.setBounds(playbackRectangle);
-        _synthGUI.setBounds(synthesiserRectangle);
+        _playback.get()->setBounds(playbackRectangle);
+        _synthGUI.get()->setBounds(synthesiserRectangle);
     }
     
 }//namespace gui

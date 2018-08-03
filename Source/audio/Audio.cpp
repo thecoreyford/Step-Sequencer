@@ -14,10 +14,10 @@ namespace audio
 {
     Audio::Audio()
     {
-        // setup oscillators
+        // initialise oscillators
         for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
         {
-            osc[i].set(&triangle[i]);
+            osc[i].set(&sine[i]);
         }
         
         // setup audio processing
@@ -45,13 +45,13 @@ namespace audio
         float *outL = outputChannelData[0];
         float *outR = outputChannelData[1];
         
-        // set amplitude to zero if midi isn't playing
-        if ( MidiOut::getInstance().getPlaying() == false )
+        // set amplitude to zero if midi isn't playing or we're changing wave
+        if ( MidiOut::getInstance().getPlaying() == false)
         {
             for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
                 osc[i].get()->setAmplitude(0.0f);
         }
-  
+        
         float accumulator = 0.0f;
         while(numSamples--)
         {
@@ -118,6 +118,44 @@ namespace audio
     void Audio::linkAudioVisualiserComponent(std::shared_ptr<AudioVisualiserComponent> av)
     {
         visualiser = av;
+    }
+    
+    //==========================================================================
+    
+    void Audio::setOscillator(int ID)
+    {
+        switch (ID) {
+            case 1/*Sine*/:
+                for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+                {
+                    osc[i].set(&sine[i]);
+                }
+                break;
+            case 2/*Square*/:
+                for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+                {
+                    osc[i].set(&square[i]);
+                }
+                break;
+            case 3/*Saw*/:
+                for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+                {
+                    osc[i].set(&saw[i]);
+                }
+                break;
+            case 4/*Triangle*/:
+                for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+                {
+                    osc[i].set(&triangle[i]);
+                }
+                break;
+            default /*Sine*/:
+                for(int i = 0; i < MIDI_CHANNEL_TOTAL; ++i)
+                {
+                    osc[i].set(&sine[i]);
+                }
+                break;
+        }
     }
     
 } //namespace audio

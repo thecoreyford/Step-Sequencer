@@ -25,7 +25,7 @@ namespace gui
         midiOut.addListener(this);
         
         _visual = std::make_shared<AudioVisualiserComponent>(1);
-        _visual.get()->setBufferSize(2048);
+        _visual.get()->setSamplesPerBlock(512);
         _visual.get()->setRepaintRate(30);
         _audio.linkAudioVisualiserComponent(_visual);
         
@@ -33,9 +33,7 @@ namespace gui
         _visual.get()->setVisible(false);
     }
     
-    SequencerGUI::~SequencerGUI()
-    {
-    }
+    SequencerGUI::~SequencerGUI(){}
     
     void SequencerGUI::paint (Graphics& g)
     {

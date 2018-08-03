@@ -30,6 +30,7 @@ namespace gui
                 play.setComponentID("stop");
                 play.setButtonText("play");
                 tempo.setVisible(true);
+                velocity.setVisible(true);
                 
             }
             else // if componentID == "stop"    ///< components playing
@@ -37,6 +38,7 @@ namespace gui
                 play.setComponentID("play");
                 play.setButtonText("stop");
                 tempo.setVisible(false);
+                velocity.setVisible(false);
             }
             repaint();
         };

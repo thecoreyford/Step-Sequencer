@@ -14,16 +14,21 @@
 
 namespace gui
 {
-    SynthesiserGUI::SynthesiserGUI()
+    SynthesiserGUI::SynthesiserGUI(audio::Audio& audio) : _audio(audio)
     {
         // In your constructor, you should add any child components, and
         // initialise any special settings that your component needs.
+        startTimer(1);
         
+        addAndMakeVisible(oscChoice);
+        oscChoice.addItem("sine", 1);
+        oscChoice.addItem("square", 2);
+        oscChoice.addItem("saw",3);
+        oscChoice.addItem("triangle",4);
+        oscChoice.addListener(this);
     }
     
-    SynthesiserGUI::~SynthesiserGUI()
-    {
-    }
+    SynthesiserGUI::~SynthesiserGUI(){}
     
     void SynthesiserGUI::paint (Graphics& g)
     {
@@ -32,10 +37,33 @@ namespace gui
     
     void SynthesiserGUI::resized()
     {
-        // This method is where you should set the bounds of any child
-        // components that your component contains..
+        oscChoice.setBounds(getLocalBounds());
         
     }
+    
+    void SynthesiserGUI::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
+    {
+        if(comboBoxThatHasChanged == &oscChoice)
+        {
+            _audio.setOscillator(comboBoxThatHasChanged->getSelectedId());
+        }
+    }
+    
+    void SynthesiserGUI::timerCallback()
+    {
+        if(audio::MidiOut::getInstance().getPlaying() == true)
+        {
+            DBG("INVISBIBLE");
+            oscChoice.setVisible(false);
+        }
+        else
+        {
+            oscChoice.setVisible(true);
+        }
+        
+        repaint();
+    }
+
     
 }//namespace gui
 

@@ -76,14 +76,20 @@ namespace audio
         
         void linkAudioVisualiserComponent(std::shared_ptr<AudioVisualiserComponent> av);
         
+        void setOscillator(int ID);
+        
     private:
         /** The audio device manager handling all ins & outs!*/
         AudioDeviceManager _audioDeviceManager;
         
         static const int MIDI_CHANNEL_TOTAL = 16;
         Atomic<synthesis::osc::Oscillator*> osc[MIDI_CHANNEL_TOTAL];
-        synthesis::osc::Sine triangle[MIDI_CHANNEL_TOTAL];
         
+        synthesis::osc::Sine sine[MIDI_CHANNEL_TOTAL];
+        synthesis::osc::Square square[MIDI_CHANNEL_TOTAL];
+        synthesis::osc::Saw saw[MIDI_CHANNEL_TOTAL];
+        synthesis::osc::Triangle triangle[MIDI_CHANNEL_TOTAL];
+                
         /** A reference to the visualiser for the audio. */
         std::shared_ptr<AudioVisualiserComponent> visualiser;
     };

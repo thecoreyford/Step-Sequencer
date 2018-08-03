@@ -12,7 +12,7 @@ namespace gui
 {
     //==============================================================================
     MainComponent::MainComponent(audio::Audio& audio) :
-    _audio(audio), _sequencer(audio)
+    _audio(audio), _sequencer(audio), _controller(audio)
     {
         setSize (1200, 800);
         
