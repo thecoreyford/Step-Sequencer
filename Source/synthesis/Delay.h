@@ -51,12 +51,33 @@ namespace synthesis {
         }
         
     private:
-        const int BUFFER_SIZE = 176400; //< 4sec delay assuming 44.1khz fs
+        static const int BUFFER_SIZE = 176400; //< 4sec delay assuming 44.1khz fs
         float buffer[BUFFER_SIZE];
         
         int writePosition;
         int readPosition;
         
+    };
+    
+    //==========================================================================
+    
+    class SampleDelay
+    {
+    public:
+        SampleDelay()
+        {
+            delayedSample = 0.0f;
+        }
+        
+        float process(const float input)
+        {
+            float output = delayedSample;
+            delayedSample = input;
+            return output;
+        }
+        
+    private:
+        float delayedSample;
     };
 
 } //namespace synthesis

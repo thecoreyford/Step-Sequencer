@@ -21,7 +21,6 @@ namespace gui
     /*
      */
     class SynthesiserGUI    : public Component,
-                              public ComboBox::Listener,
                               public Timer
     {
     public:
@@ -31,8 +30,6 @@ namespace gui
         void paint (Graphics&) override;
         void resized() override;
         
-        void comboBoxChanged (ComboBox* comboBoxThatHasChanged) override;
-        
         void timerCallback() override;
         
     private:
@@ -40,6 +37,10 @@ namespace gui
         SynthesiserGUI();
         
         ComboBox oscChoice;
+        
+        Slider filter;
+        Label filterLabel; 
+        
         audio::Audio& _audio;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SynthesiserGUI)
     };

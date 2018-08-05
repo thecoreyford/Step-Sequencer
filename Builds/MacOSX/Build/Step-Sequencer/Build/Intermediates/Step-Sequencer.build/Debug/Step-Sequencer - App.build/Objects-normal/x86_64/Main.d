@@ -485,6 +485,8 @@ dependencies: \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/../audio/../gui/widgets/CartesianToggleButton.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/../audio/../synthesis/Oscillator.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/../audio/../synthesis/OscillatorTypes.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/../audio/../synthesis/Filters.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/../audio/../synthesis/Delay.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/SequencerGUI.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/SequencerGrid.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/KeyboardGrid.h \

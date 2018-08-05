@@ -25,7 +25,25 @@ namespace gui
         oscChoice.addItem("square", 2);
         oscChoice.addItem("saw",3);
         oscChoice.addItem("triangle",4);
-        oscChoice.addListener(this);
+        oscChoice.onChange = [this]
+        {
+            _audio.setOscillator(oscChoice.getSelectedId());
+        };
+        
+        //======================================================================
+        
+        addAndMakeVisible(filter);
+        filter.setRange(20.0, 20000.0);
+        filter.setValue(20000.0);
+        filter.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
+        filter.setSkewFactorFromMidPoint(10020);
+        addAndMakeVisible (filterLabel);
+        filterLabel.setText ("LPF", dontSendNotification);
+        filterLabel.attachToComponent (&filter, true);
+        filter.onValueChange = [this]
+        {
+            _audio.setFilterCutoff(filter.getValue());
+        };
     }
     
     SynthesiserGUI::~SynthesiserGUI(){}
@@ -37,33 +55,33 @@ namespace gui
     
     void SynthesiserGUI::resized()
     {
-        oscChoice.setBounds(getLocalBounds());
+        Rectangle<int> oscRect, filterRect;
+        oscRect = filterRect = getLocalBounds();
+        oscRect.removeFromBottom(getLocalBounds().getHeight() * 0.5);
+        filterRect.removeFromTop(getLocalBounds().getHeight() * 0.5);
+        filterRect.removeFromLeft(40/*for label*/);
         
-    }
-    
-    void SynthesiserGUI::comboBoxChanged (ComboBox* comboBoxThatHasChanged)
-    {
-        if(comboBoxThatHasChanged == &oscChoice)
-        {
-            _audio.setOscillator(comboBoxThatHasChanged->getSelectedId());
-        }
+        oscChoice.setBounds(oscRect);
+        filter.setBounds(filterRect);
     }
     
     void SynthesiserGUI::timerCallback()
     {
         if(audio::MidiOut::getInstance().getPlaying() == true)
         {
-            DBG("INVISBIBLE");
             oscChoice.setVisible(false);
+            filterLabel.setVisible(false);
+            filter.setVisible(false);
         }
         else
         {
             oscChoice.setVisible(true);
+            filterLabel.setVisible(true);
+            filter.setVisible(true);
         }
         
         repaint();
     }
-
     
 }//namespace gui
 

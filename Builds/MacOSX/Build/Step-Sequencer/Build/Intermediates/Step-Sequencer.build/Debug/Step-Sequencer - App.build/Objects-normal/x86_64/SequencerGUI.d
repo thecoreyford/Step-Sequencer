@@ -485,6 +485,8 @@ dependencies: \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../../audio/Audio.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../../audio/../synthesis/Oscillator.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../../audio/../synthesis/OscillatorTypes.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../../audio/../synthesis/Filters.h \
+  /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../../audio/../synthesis/Delay.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/SequencerGrid.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/KeyboardGrid.h \
   /Users/coreyford/Documents/Code-Projects/C++/Step-Sequencer/Source/gui/sequencer/../widgets/Key.h

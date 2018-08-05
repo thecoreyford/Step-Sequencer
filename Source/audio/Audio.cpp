@@ -64,6 +64,9 @@ namespace audio
             // scale for no clipping
             accumulator *= 1.0f / MIDI_CHANNEL_TOTAL;
             
+            // apply filtering
+            accumulator = filter.process(accumulator);
+            
             // test for clipping range
             jassert(accumulator >= -1.0f && accumulator <= 1.0f);
             
@@ -156,6 +159,11 @@ namespace audio
                 }
                 break;
         }
+    }
+    
+    void Audio::setFilterCutoff(float cutoff)
+    {
+        filter.setCutoff(cutoff);
     }
     
 } //namespace audio

@@ -14,6 +14,7 @@
 #include "MidiOut.h"
 #include "../synthesis/Oscillator.h"
 #include "../synthesis/OscillatorTypes.h"
+#include "../synthesis/Filters.h"
 
 //==============================================================================
 
@@ -78,6 +79,8 @@ namespace audio
         
         void setOscillator(int ID);
         
+        void setFilterCutoff(float cutoff);
+        
     private:
         /** The audio device manager handling all ins & outs!*/
         AudioDeviceManager _audioDeviceManager;
@@ -89,7 +92,9 @@ namespace audio
         synthesis::osc::Square square[MIDI_CHANNEL_TOTAL];
         synthesis::osc::Saw saw[MIDI_CHANNEL_TOTAL];
         synthesis::osc::Triangle triangle[MIDI_CHANNEL_TOTAL];
-                
+        
+        synthesis::filter::OnePole filter;
+        
         /** A reference to the visualiser for the audio. */
         std::shared_ptr<AudioVisualiserComponent> visualiser;
     };

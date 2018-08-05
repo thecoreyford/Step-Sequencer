@@ -53,6 +53,7 @@
     </GROUP>
     <GROUP id="{E002E4D7-2C10-8BB9-D913-A2777847EF2B}" name="synthesis">
       <FILE id="f02txE" name="Delay.h" compile="0" resource="0" file="Source/synthesis/Delay.h"/>
+      <FILE id="Zb3fyO" name="Filters.h" compile="0" resource="0" file="Source/synthesis/Filters.h"/>
       <FILE id="yaKGDE" name="Oscillator.cpp" compile="1" resource="0" file="Source/synthesis/Oscillator.cpp"/>
       <FILE id="rJD8lR" name="Oscillator.h" compile="0" resource="0" file="Source/synthesis/Oscillator.h"/>
       <FILE id="THKJZj" name="OscillatorTypes.h" compile="0" resource="0"
