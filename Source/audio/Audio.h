@@ -1,12 +1,14 @@
-/*
-  ==============================================================================
-
-    Audio.h
-    Created: 6 Jul 2018 4:01:38pm
-    Author:  Corey Ford
-
-  ==============================================================================
-*/
+/**
+ *  @file    Audio.h
+ *  @author  Corey Ford
+ *  @date    6/07/2018
+ *  @version 1.0
+ *
+ *  @section DESCRIPTION
+ *
+ *  Handles midi input and audio output.
+ *
+ */
 
 #pragma once
 
@@ -75,24 +77,43 @@ namespace audio
          */
         void setupMidiInput(String midiInput);
         
+        /**
+         * Adds a shared pointer to an audio visualiser.
+         * @param  The current pointer to the audio visualiser.
+         */
         void linkAudioVisualiserComponent(std::shared_ptr<AudioVisualiserComponent> av);
         
+        /**
+         * Changes the chosen bank of oscillators depending on their.
+         * @param  the ID for each oscillator.
+         */
         void setOscillator(int ID);
         
+        /**
+         * Calls the LPF's co-efficent calculation function changing the cutoff.
+         * @param  The new value for the cutoff frequency.
+         */
         void setFilterCutoff(float cutoff);
         
     private:
         /** The audio device manager handling all ins & outs!*/
-        AudioDeviceManager _audioDeviceManager;
+        AudioDeviceManager audioDeviceManager;
         
+        /** No of midi channels avaliable. */
         static const int MIDI_CHANNEL_TOTAL = 16;
+        /** Pointer for oscillators - demonstrating polymorphism. */
         Atomic<synthesis::osc::Oscillator*> osc[MIDI_CHANNEL_TOTAL];
         
+        /** Bank of sine oscillators. */
         synthesis::osc::Sine sine[MIDI_CHANNEL_TOTAL];
+        /** Bank of square wave oscillators.*/
         synthesis::osc::Square square[MIDI_CHANNEL_TOTAL];
+        /** Bank of saw wave oscillators.*/
         synthesis::osc::Saw saw[MIDI_CHANNEL_TOTAL];
+        /** Bank of triangle wave oscillators.*/
         synthesis::osc::Triangle triangle[MIDI_CHANNEL_TOTAL];
         
+        /** A simple one pole LPF.*/
         synthesis::filter::OnePole filter;
         
         /** A reference to the visualiser for the audio. */

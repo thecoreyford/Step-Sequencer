@@ -1,12 +1,15 @@
-/*
-  ==============================================================================
+/**
+ *  @file    MidiEventList.h
+ *  @author  Corey Ford
+ *  @date    23/07/2018
+ *  @version 1.0
+ *
+ *  @section DESCRIPTION
+ *
+ *  Container for midi messages sorted by there timecode & related classes.
+ *
+ */
 
-    MidiEventList.h
-    Created: 23 Jul 2018 6:01:41pm
-    Author:  Corey Ford
-
-  ==============================================================================
-*/
 
 #pragma once
 
@@ -17,7 +20,7 @@
 // TODO(corey2.ford@live.uwe.ac.uk): individual getters and setters!
 //                                     Haven't implemented as not needed for this
 //                                     project but would make the class more reusable.
-//                                      i.e. setVelocity, getNoteValue and so on...
+//                                     i.e. setVelocity, getNoteValue and so on...
 
 namespace audio
 {
@@ -94,9 +97,9 @@ namespace audio
     private:
         
         /** Array holding all scheduled midi messages. */
-        Array<MidiMessage> _eventList;
+        Array<MidiMessage> eventList;
         /** Our sorter object for the array. */
-        MidiMessageTimestampSorter _sorter;
+        MidiMessageTimestampSorter sorter;
     };
     
     //==========================================================================

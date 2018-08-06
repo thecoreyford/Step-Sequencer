@@ -2,7 +2,7 @@
  ==============================================================================
  
  Audio.cpp
- Created: 6 Jul 2018 4:01:38pm
+ Created: 6 Jul 2018
  Author:  Corey Ford
  
  ==============================================================================
@@ -21,8 +21,8 @@ namespace audio
         }
         
         // setup audio processing
-        _audioDeviceManager.initialiseWithDefaultDevices (0, 2);
-        _audioDeviceManager.addAudioCallback (this);
+        audioDeviceManager.initialiseWithDefaultDevices (0, 2);
+        audioDeviceManager.addAudioCallback (this);
         
         // setup visualiser as null unless set
         visualiser = nullptr;
@@ -30,8 +30,8 @@ namespace audio
     
     Audio::~Audio()
     {
-        _audioDeviceManager.removeAudioCallback (this);
-        _audioDeviceManager.removeMidiInputCallback("step-sequencer", this);
+        audioDeviceManager.removeAudioCallback (this);
+        audioDeviceManager.removeMidiInputCallback("step-sequencer", this);
     }
     
     void Audio::audioDeviceAboutToStart (AudioIODevice* device){}
@@ -92,16 +92,18 @@ namespace audio
     
     void Audio::setupMidiInput(String midiInput)
     {
-        _audioDeviceManager.setMidiInputEnabled(midiInput, true);
-        _audioDeviceManager.addMidiInputCallback(midiInput, this);
+        audioDeviceManager.setMidiInputEnabled(midiInput, true);
+        audioDeviceManager.addMidiInputCallback(midiInput, this);
     }
     
     
     void Audio::handleIncomingMidiMessage (MidiInput* source,
                                            const MidiMessage& message)
     {
+        // so long as the channel is assigned a oscillator wavetype...
         if(osc[message.getChannel()-1].get() != nullptr)
         {
+            // set the appropriate condition based on if note on or note off
             if( message.isNoteOn() )
             {
                 osc[message.getChannel()-1].get()->setAmplitude( message.getFloatVelocity() );
@@ -111,6 +113,7 @@ namespace audio
                 osc[message.getChannel()-1].get()->setAmplitude(0.0f);
             }
             
+            // set frequency
             float freq = MidiMessage::getMidiNoteInHertz( message.getNoteNumber() );
             osc[message.getChannel()-1].get()->setFrequency(freq);
         }

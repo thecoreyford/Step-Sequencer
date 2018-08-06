@@ -2,7 +2,7 @@
   ==============================================================================
 
     MidiOut.cpp
-    Created: 20 Jul 2018 4:16:23pm
+    Created: 20 Jul 2018
     Author:  Corey Ford
 
   ==============================================================================
@@ -15,21 +15,20 @@ namespace audio
     MidiOut::MidiOut()
     {
         // create our midi output interface
-        _midiOutput = juce::MidiOutput::createNewDevice("step-sequencer");
+        midiOutput = juce::MidiOutput::createNewDevice("step-sequencer");
         
         // initalise default playback settings
         setPlayback("tempo", 120.0f);
         setPlayback("velocity", 90.0f);
         preparePlayback();
-        
         setPlayback("startnote", 60.0f);
         isPlaying.set(false);
     }
     
     MidiOut::~MidiOut()
     {
-        _midiOutput->clearAllPendingMessages();
-        delete _midiOutput;
+        midiOutput->clearAllPendingMessages();
+        delete midiOutput;
     }
     
     MidiOut& MidiOut::getInstance()
@@ -42,7 +41,7 @@ namespace audio
     
     void MidiOut::setPlayback (String setting, float value)
     {
-        _playbackSettings.set(setting.toLowerCase().removeCharacters(" "),
+        playbackSettings.set(setting.toLowerCase().removeCharacters(" "),
                               value);
     }
     
@@ -51,9 +50,9 @@ namespace audio
         setting = setting.toLowerCase().removeCharacters(" ");
         
         // The setting you were looking for does not exist!!!
-        jassert(_playbackSettings.contains(setting));
+        jassert(playbackSettings.contains(setting));
         
-        return _playbackSettings[setting];
+        return playbackSettings[setting];
     }
     
     //==========================================================================
@@ -66,12 +65,12 @@ namespace audio
         const int& column = x;
         
         // calculate the note value for each step
-        const int noteNumber = _playbackSettings["startnote"] + row;
+        const int noteNumber = playbackSettings["startnote"] + row;
         
         // place converted values into a midi message
         MidiMessage newMessageOn = MidiMessage::noteOn((row+1),
                                                        noteNumber,
-                                                       (uint8)_playbackSettings["velocity"]);
+                                                       (uint8)playbackSettings["velocity"]);
         newMessageOn.addToTimeStamp(/*increment */ column);
         
         MidiMessage newMessageOff = MidiMessage::noteOff((row+1),
@@ -82,14 +81,14 @@ namespace audio
         // modify the event list
         if(state == true)
         {
-            _eventList.addMidiEvent(newMessageOn);
-            _eventList.addMidiEvent(newMessageOff);
+            eventList.addMidiEvent(newMessageOn);
+            eventList.addMidiEvent(newMessageOff);
         }
         else
         {
             // as all values are gaurenteed to be unique on a grid we can...
-            _eventList.removeMidiEvent(newMessageOn);
-            _eventList.removeMidiEvent(newMessageOff);
+            eventList.removeMidiEvent(newMessageOn);
+            eventList.removeMidiEvent(newMessageOff);
         }
     }
 
@@ -101,17 +100,17 @@ namespace audio
         double elapsedTime = Time::getMillisecondCounterHiRes() - timeStart.get();
         
         // if it is the appropriate amount of time...
-        if(elapsedTime >= (_eventList.getMidiEvent(playPosition.get()).getTimeStamp() * _increment))
+        if(elapsedTime >= (eventList.getMidiEvent(playPosition.get()).getTimeStamp() * increment))
         {
             // output the message
-            _midiOutput->sendMessageNow(_eventList.getMidiEvent(playPosition.get()));
+            midiOutput->sendMessageNow(eventList.getMidiEvent(playPosition.get()));
             
             // increment to the next play position
             playPosition.set(playPosition.get() + 1);
         }
         
         // wrap around the play position
-        if(playPosition.get() == _eventList.getSize())
+        if(playPosition.get() == eventList.getSize())
         {
             playPosition.set(0);
             timeStart.set(Time::getMillisecondCounterHiRes());
@@ -125,9 +124,9 @@ namespace audio
         if(button->getComponentID() == "stop") // to be played
         {
             // add an ending message for the length of the sequence
-            _dummyMessage = MidiMessage::noteOn(1, 60, (uint8)0);
-            _dummyMessage.setTimeStamp(_playbackSettings["colcount"]);
-            _eventList.addMidiEvent(_dummyMessage);
+            dummyMessage = MidiMessage::noteOn(1, 60, (uint8)0);
+            dummyMessage.setTimeStamp(playbackSettings["colcount"]);
+            eventList.addMidiEvent(dummyMessage);
             
             // ensure that settings have been updated before playback
             preparePlayback();
@@ -135,8 +134,8 @@ namespace audio
             // trigger settings for starting playback
             playPosition = 0;
             isPlaying.set(true);
-            if(_listener != nullptr)
-                _listener->playbackStateChanged(true);
+            if(listener != nullptr)
+                listener->playbackStateChanged(true);
             timeStart.set(Time::getMillisecondCounterHiRes());
             startTimer(1);
         }
@@ -145,8 +144,8 @@ namespace audio
         {
             // stop playback
             isPlaying.set(false);
-            if(_listener != nullptr)
-                _listener->playbackStateChanged(false);
+            if(listener != nullptr)
+                listener->playbackStateChanged(false);
             stopTimer();
         }
     }
@@ -156,21 +155,21 @@ namespace audio
     void MidiOut::preparePlayback()
     {
         // calculate increment length for each step
-        _increment = (330.0 - _playbackSettings["tempo"])
+        increment = (330.0 - playbackSettings["tempo"])
                         / 60.0f /* secPerMin */
-                        / _playbackSettings["colcount"]  /* beatsInABar */
+                        / playbackSettings["colcount"]  /* beatsInABar */
                         * 1000 /* for milliseconds*/;
         
         // check message velocities within list
-        for(int i = 0; i < _eventList.getSize(); i++)
+        for(int i = 0; i < eventList.getSize(); i++)
         {
-            if(_eventList.getMidiEvent(i).isNoteOn())
+            if(eventList.getMidiEvent(i).isNoteOn())
             {
-                if(_eventList.getMidiEvent(i).getVelocity() != (uint8)_playbackSettings["velocity"])
+                if(eventList.getMidiEvent(i).getVelocity() != (uint8)playbackSettings["velocity"])
                 {
-                    auto newEvent = _eventList.getMidiEvent(i);
-                    newEvent.setVelocity(_playbackSettings["velocity"] / 127.0f);
-                    _eventList.setMidiEvent(i, newEvent);
+                    auto newEvent = eventList.getMidiEvent(i);
+                    newEvent.setVelocity(playbackSettings["velocity"] / 127.0f);
+                    eventList.setMidiEvent(i, newEvent);
                 }
             }
         }

@@ -2,7 +2,7 @@
   ==============================================================================
 
     MidiEventList.cpp
-    Created: 23 Jul 2018 6:01:41pm
+    Created: 23 Jul 2018
     Author:  Corey Ford
 
   ==============================================================================
@@ -14,29 +14,29 @@ namespace audio
 {
     MidiEventList::MidiEventList()
     {
-        _eventList.clear();
+        eventList.clear(); // ensure list is empty
     }
     
     MidiEventList::~MidiEventList(){}
     
     void MidiEventList::addMidiEvent(const MidiMessage& midiMessage)
     {
-            _eventList.add(midiMessage);
-            _eventList.sort(_sorter);
+            eventList.add(midiMessage);
+            eventList.sort(sorter); // sort by timestamp
     }
     
     void MidiEventList::removeMidiEvent(const MidiMessage& midiMessage)
     {
-        for(int i = 0; i < _eventList.size(); i++)
+        for(int i = 0; i < eventList.size(); i++)
         {
-            if(_eventList[i] == midiMessage)
+            if(eventList[i] == midiMessage)
             {
-                _eventList.remove(i);
+                eventList.remove(i);
                 break;  // leave the list
             }
         }
         
-        _eventList.sort(_sorter);
+        eventList.sort(sorter); // sort by timestamp
     }
     
     MidiMessage MidiEventList::getMidiEvent(const int index) const
@@ -44,7 +44,7 @@ namespace audio
         // the index you are getitng is out of range!!!
         jassert(index < getSize());
         
-        return _eventList[index];
+        return eventList[index];
     }
     
     void MidiEventList::setMidiEvent(const int index,
@@ -53,12 +53,12 @@ namespace audio
         // the index you want to set is out of range!!!
         jassert(index < getSize());
         
-        _eventList.set(index, midiMessage);
+        eventList.set(index, midiMessage);
     }
     
     int MidiEventList::getSize() const
     {
-        return _eventList.size();
+        return eventList.size();
     }
     
 } //namespace audio

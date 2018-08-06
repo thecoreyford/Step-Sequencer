@@ -44,7 +44,7 @@ namespace gui
         audio::Audio& _audio;
         
         /** The gui for playback controls. */
-        std::unique_ptr<PlayBackControls> _playback; //TODO: left off here - smart pointer then pass audio reference through
+        std::unique_ptr<PlayBackControls> _playback;
         
         /** The gui for the synthesiser. */
         std::unique_ptr<SynthesiserGUI> _synthGUI;

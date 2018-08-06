@@ -1,11 +1,13 @@
-/*
- ==============================================================================
- 
- MidiOut.h
- Created: 20 Jul 2018 4:16:23pm
- Author:  Corey Ford
- 
- ==============================================================================
+/**
+ *  @file    MidiOut.h
+ *  @author  Corey Ford
+ *  @date    20/07/2018
+ *  @version 1.0
+ *
+ *  @section DESCRIPTION
+ *
+ *  MidiOut singleton for scheduling and playback of midi messages.
+ *
  */
 
 #pragma once
@@ -90,14 +92,14 @@ namespace audio
          *  Setter for the output listener.
          *  @param A pointer to the listener.
          */
-        void addListener(Listener* listener) { _listener = listener; }
+        void addListener(Listener* listenerParam) { listener = listenerParam; }
         
         /** Getter for retreiving playstate of midi output. */
         bool getPlaying() const { return isPlaying.get(); }
         
     private:
-        
-        Listener* _listener;
+        /** Pointer to the playback state listener. */
+        Listener* listener;
         
         /**
          * Private constructor. Must call get instance.
@@ -129,19 +131,24 @@ namespace audio
         void preparePlayback();
         
         /** Hash map for each playback setting parameters.*/
-        HashMap<String, float> _playbackSettings;
+        HashMap<String, float> playbackSettings;
         /** Pointer for the sequencers virtual midi output device. */
-        juce::MidiOutput* _midiOutput;
+        juce::MidiOutput* midiOutput;
         
         /** The list of events ready for playback. */
-        MidiEventList _eventList;
+        MidiEventList eventList;
+        /** The current play position within the event list.*/
         Atomic<int> playPosition;
+        /** The time playback started. */
         Atomic<double> timeStart;
+        /** The current state of playback. */
         Atomic<bool> isPlaying;
         
-        float _increment;
+        /** Increment amount for the change in tempo. */
+        float increment;
         
-        MidiMessage _dummyMessage;
+        /** A sys ex message for blank output steps in the sequencer. */
+        MidiMessage dummyMessage;
     };
     
 } //namespace audio
