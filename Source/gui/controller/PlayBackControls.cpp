@@ -2,7 +2,7 @@
   ==============================================================================
 
     PlayBackControls.cpp
-    Created: 6 Jul 2018 7:20:31pm
+    Created: 6 Jul 2018
     Author:  Corey Ford
 
   ==============================================================================
@@ -16,9 +16,8 @@ namespace gui
 {
     PlayBackControls::PlayBackControls()
     {
-        // In your constructor, you should add any child components, and
-        // initialise any special settings that your component needs.
         
+        // setup play button
         addAndMakeVisible(play);
         play.setComponentID("stop");
         play.setButtonText("play");
@@ -45,6 +44,7 @@ namespace gui
         
         //======================================================================
         
+        // setup tempo control
         addAndMakeVisible(tempo);
         tempo.setComponentID("tempo");
         tempo.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
@@ -60,6 +60,7 @@ namespace gui
         
         //======================================================================
         
+        // setup velocity control
         addAndMakeVisible(velocity);
         velocity.setComponentID("velocity");
         velocity.setSliderStyle(Slider::SliderStyle::LinearHorizontal);
@@ -74,6 +75,8 @@ namespace gui
         };
     }
     
+    //==========================================================================
+    
     PlayBackControls::~PlayBackControls(){}
     
     void PlayBackControls::paint (Graphics& g)
@@ -83,6 +86,7 @@ namespace gui
     
     void PlayBackControls::resized()
     {
+        // setup rectangle bounds
         Rectangle<int> playRect = getLocalBounds().removeFromLeft(getLocalBounds().getWidth()
                                                                   / 2.40f);
         
@@ -94,6 +98,7 @@ namespace gui
                                                                     / 2.0f);
         velocityRect.removeFromBottom(getLocalBounds().getHeight() / 2.0f);
 
+        // apply rectangle bounds 
         play.setBounds (playRect);
         tempo.setBounds (tempoRect);
         velocity.setBounds (velocityRect);

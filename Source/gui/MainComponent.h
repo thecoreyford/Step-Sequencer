@@ -1,10 +1,14 @@
-/*
-  ==============================================================================
-
-    This file was auto-generated!
-
-  ==============================================================================
-*/
+/**
+ *  @file    MainComponent.h
+ *  @author  Corey Ford
+ *  @date    6/07/2018
+ *  @version 1.0
+ *
+ *  @section DESCRIPTION
+ *
+ *  Entry Point for GUI. Lives inside our window.
+ *
+ */
 
 #pragma once
 
@@ -18,27 +22,39 @@
 namespace gui
 {
     /*
-     This component lives inside our window, and this is where you should put all
-     your controls and content.
+     Entry point for GUI. Lives inside our window.
      */
     class MainComponent : public Component
     {
     public:
-        //==============================================================================
-        MainComponent (audio::Audio& audio);
+        
+        /**
+         Constructor. Initialises GUI components.
+         @param the audio playback component.
+         */
+        MainComponent (audio::Audio& audioParam);
+        
+        /** Destructor. */
         ~MainComponent();
         
-        //==============================================================================
+        /**
+         *  Fills component with horrible colour as this should be hidden.
+         *  @param the graphics context for painting.
+         */
         void paint (Graphics&) override;
+        
+        /** Sets bounds for sub components. */
         void resized() override;
         
     private:
-        //==============================================================================
-        // Your private member variables go here...
-        audio::Audio& _audio;
         
-        SequencerGUI _sequencer;
-        ControllerGUI _controller;
+        /** Our audio device. */
+        audio::Audio& audio;
+        
+        /** The sequencer GUI component. */
+        SequencerGUI sequencer;
+        /** The controller GUI component. */
+        ControllerGUI controller;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
     };
