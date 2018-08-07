@@ -1,71 +1,67 @@
-/**
- *  @file    Oscillator.cpp
- *  @author  Corey Ford
- *  @date    2/07/2018
- *  @version 1.0
- *
- *  @section DESCRIPTION
- *
- *  A virtual base class for oscillator's based on "math type" implementations
- *  for sample by sample processing. (Implementation)
- *
+/*
+ ==============================================================================
+ 
+ Oscillator.cpp
+ Created: 02 Jul 2018
+ Author:  Corey Ford
+ 
+ ==============================================================================
  */
 
-
 #include "Oscillator.h"
-#define _USE_MATH_DEFINES // for use with windows
-#include <math.h>
 
-namespace synthesis{
-namespace osc{
+namespace synthesis
+{
+    namespace osc
+    {
+            
+        Oscillator::Oscillator()
+        {
+            //Assign defaults for local variables.
+            freq = 440.f;
+            amp = 0.9f;
+            sampleRate = 44100.0;
+            currentPhase = 0.f;
+            setPhaseIncrement();
+        }
         
-    Oscillator::Oscillator()
-    {
-        //Assign defaults for local variables.
-        freq_ = 440.f;
-        amp_ = 0.9f;
-        sampleRate_ = 44100.0;
-        currentPhase_ = 0.f;
-        setPhaseIncrement();
-    }
-    
-    Oscillator::~Oscillator(){}
-    
-    void Oscillator::setFrequency(float frequency)
-    {
-        freq_ = frequency;
-        setPhaseIncrement();
-    }
-    
-    void Oscillator::setAmplitude(float amp)
-    {
-        amp_ = amp;
-    }
-    
-    void Oscillator::setSampleRate(double sampleRate)
-    {
-        sampleRate_ = sampleRate;
-        setPhaseIncrement();
-    }
-    
-    float Oscillator::getSample()
-    {
-        float sample = 0;
+        Oscillator::~Oscillator(){}
         
-        currentPhase_ += phaseIncrement_;
-        sample =  waveshape(currentPhase_);
-        sample *= amp_;
+        void Oscillator::setFrequency(float frequencyParam)
+        {
+            freq = frequencyParam;
+            setPhaseIncrement();
+        }
         
-        if( currentPhase_ > ( 2.f * M_PI ) )
-            currentPhase_ -= ( 2.f * M_PI );
+        void Oscillator::setAmplitude(float ampParam)
+        {
+            amp = ampParam;
+        }
         
-        return sample;
-    }
-    
-    void Oscillator::setPhaseIncrement()
-    {
-        phaseIncrement_ = (2.f * M_PI * freq_) / sampleRate_;
-    }
+        void Oscillator::setSampleRate(double sampleRateParam)
+        {
+            sampleRate = sampleRateParam;
+            setPhaseIncrement();
+        }
         
-}// namespace osc
+        float Oscillator::getSample()
+        {
+            float sample = 0;
+            
+            currentPhase += phaseIncrement;
+            sample =  waveshape(currentPhase);
+            sample *= amp;
+            
+            if( currentPhase > ( 2.f * M_PI ) )
+                currentPhase -= ( 2.f * M_PI );
+            
+            return sample;
+        }
+        
+        void Oscillator::setPhaseIncrement()
+        {
+            phaseIncrement = (2.f * M_PI * freq) / sampleRate;
+        }
+            
+    }// namespace osc
 } // namespace synthesis
