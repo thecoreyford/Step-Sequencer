@@ -32,16 +32,16 @@ public:
         // Call the midi out singleton instance first so that
         //   the constructor creates midi output before audio.
         audio::MidiOut::getInstance();
-        _audio.setupMidiInput("step-sequencer"); ///< add the midi output device
+        audio.setupMidiInput("step-sequencer"); ///< add the midi output device
         
-        _mainWindow = std::make_unique<MainWindow>(getApplicationName(), _audio);
+        mainWindow = std::make_unique<MainWindow>(getApplicationName(), audio);
     }
 
     void shutdown() override
     {
         // Add your application's shutdown code here..
 
-        _mainWindow = nullptr; // (deletes our window)
+        mainWindow = nullptr; // (deletes our window)
     }
 
     //==============================================================================
@@ -67,12 +67,12 @@ public:
     class MainWindow    : public DocumentWindow
     {
     public:
-        MainWindow (String name, audio::Audio& audio)  : DocumentWindow (name,
+        MainWindow (String name, audio::Audio& audioParam)  : DocumentWindow (name,
                                                     Desktop::getInstance().getDefaultLookAndFeel()
                                                                           .findColour (ResizableWindow::backgroundColourId),
                                                     DocumentWindow::allButtons)
         {
-            ScopedPointer<gui::MainComponent> mainComponent (new gui::MainComponent (audio));
+            ScopedPointer<gui::MainComponent> mainComponent (new gui::MainComponent (audioParam));
             setUsingNativeTitleBar (true);
             
             setContentOwned (mainComponent.release(), true);
@@ -103,8 +103,8 @@ public:
     };
     
 private:
-    std::unique_ptr<MainWindow> _mainWindow;
-    audio::Audio _audio;
+    std::unique_ptr<MainWindow> mainWindow;
+    audio::Audio audio;
 };
 
 //==============================================================================
