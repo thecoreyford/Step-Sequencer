@@ -2,7 +2,7 @@
   ==============================================================================
 
     KeyboardGrid.cpp
-    Created: 10 Jul 2018 4:13:35pm
+    Created: 10 Jul 2018
     Author:  Corey Ford
 
   ==============================================================================
@@ -14,7 +14,7 @@
 
 namespace gui
 {
-    KeyboardGrid::KeyboardGrid(const int rowCount) : _rowCount(rowCount)
+    KeyboardGrid::KeyboardGrid(const int rowCountParam) : rowCount(rowCountParam)
     {
         // get the midi output device for settings
         audio::MidiOut& midiOut = audio::MidiOut::getInstance();
@@ -22,7 +22,7 @@ namespace gui
         for(int row = 0; row < rowCount; row++)
         {
             int inverseRow = rowCount - 1 - row; // so lowest note is at the bottom
-            addAndMakeVisible ( _keys.add (new Key (inverseRow + midiOut.getSetting("startnote")) ));
+            addAndMakeVisible ( keys.add (new Key (inverseRow + midiOut.getSetting("startnote")) ));
         }
     }
     
@@ -41,10 +41,10 @@ namespace gui
         
         grid.templateColumns.add( Grid::TrackInfo (1_fr) );
         
-        for(int row = 0; row < _rowCount; row++)
+        for(int row = 0; row < rowCount; row++)
         {
             grid.templateRows.add( Grid::TrackInfo (1_fr) );
-            grid.items.add( GridItem (_keys[row]) );
+            grid.items.add( GridItem (keys[row]) );
         }
         
         grid.performLayout( getLocalBounds() );

@@ -1,12 +1,14 @@
-/*
-  ==============================================================================
-
-    SequencerGUI.h
-    Created: 6 Jul 2018 6:43:06pm
-    Author:  Corey Ford
-
-  ==============================================================================
-*/
+/**
+ *  @file    SequencerGrid.h
+ *  @author  Corey Ford
+ *  @date    6/07/2018
+ *  @version 1.0
+ *
+ *  @section DESCRIPTION
+ *
+ * Draws the visual components making up the sequencer GUI.
+ *
+ */
 
 #pragma once
 
@@ -21,14 +23,14 @@
 namespace gui
 {
     /**
-     * Draws the visual components making up the sequencer grid.
+     * Draws the visual components making up the sequencer GUI.
      */
     class SequencerGUI : public Component,
                          public audio::MidiOut::Listener
     {
     public:
         /** Constructor. Makes sub components visible. */
-        SequencerGUI(audio::Audio& audio);
+        SequencerGUI(audio::Audio& audioParam);
         
         /** Destructor. Currently does nothing. */
         ~SequencerGUI();
@@ -51,14 +53,20 @@ namespace gui
         void playbackStateChanged(bool isPlaying) override;
 
     private:
-        std::unique_ptr<SequencerGrid> _seqGrid;
-        std::unique_ptr<KeyboardGrid> _keyGrid;
-        std::shared_ptr<AudioVisualiserComponent> _visual;
+        /** Pointer for our sequencer grid GIO. */
+        std::unique_ptr<SequencerGrid> seqGrid;
+        /** Pointer for our keyboard grid GUI. */
+        std::unique_ptr<KeyboardGrid> keyGrid;
+        /** Shared pointer for the audio visualisations. */
+        std::shared_ptr<AudioVisualiserComponent> visual;
 
-        audio::Audio& _audio;
+        /**Our audio component. */
+        audio::Audio& audio;
         
-        const int _rowCount = 16;
-        const int _columnCount = 8;
+        /** constant for row count */
+        const int ROW_COUNT = 16;
+        /** constant for column count */
+        const int COLUMN_COUNT = 8;
         
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SequencerGUI)
     };

@@ -14,23 +14,26 @@
 
 namespace gui
 {
-    SequencerGUI::SequencerGUI(audio::Audio& audio) : _audio(audio)
+    SequencerGUI::SequencerGUI(audio::Audio& audioParam) : audio(audioParam)
     {
-        _keyGrid = std::make_unique<KeyboardGrid>(_rowCount);
-        _seqGrid = std::make_unique<SequencerGrid>(_rowCount, _columnCount);
-        addAndMakeVisible(_seqGrid.get());
-        addAndMakeVisible(_keyGrid.get());
+        // add grid components
+        keyGrid = std::make_unique<KeyboardGrid>(ROW_COUNT);
+        seqGrid = std::make_unique<SequencerGrid>(ROW_COUNT, COLUMN_COUNT);
+        addAndMakeVisible(seqGrid.get());
+        addAndMakeVisible(keyGrid.get());
         
+        // listener to the midi output device
         audio::MidiOut& midiOut = audio::MidiOut::getInstance();
         midiOut.addListener(this);
         
-        _visual = std::make_shared<AudioVisualiserComponent>(1);
-        _visual.get()->setSamplesPerBlock(512);
-        _visual.get()->setRepaintRate(30);
-        _audio.linkAudioVisualiserComponent(_visual);
+        // setup visual component
+        visual = std::make_shared<AudioVisualiserComponent>(1);
+        visual.get()->setSamplesPerBlock(512);
+        visual.get()->setRepaintRate(30);
+        audio.linkAudioVisualiserComponent(visual);
         
-        addAndMakeVisible(_visual.get());
-        _visual.get()->setVisible(false);
+        addAndMakeVisible(visual.get());
+        visual.get()->setVisible(false);
     }
     
     SequencerGUI::~SequencerGUI(){}
@@ -42,6 +45,7 @@ namespace gui
     
     void SequencerGUI::resized()
     {
+        // split screen bounds into different rectange areas
         Rectangle<int> sequencerRectangle, keyboardRectangle, visualRectangle;
         sequencerRectangle = keyboardRectangle = visualRectangle = getLocalBounds();
         sequencerRectangle.removeFromLeft(getWidth() * 0.30);
@@ -50,22 +54,24 @@ namespace gui
         visualRectangle.removeFromBottom(getHeight() * 0.10);
         visualRectangle.removeFromLeft(keyboardRectangle.getWidth());
         
-        _seqGrid->setBounds(sequencerRectangle);
-        _keyGrid->setBounds(keyboardRectangle);
-        _visual->setBounds(visualRectangle);
+        // apply components to these areas
+        seqGrid->setBounds(sequencerRectangle);
+        keyGrid->setBounds(keyboardRectangle);
+        visual->setBounds(visualRectangle);
     }
     
     void SequencerGUI::playbackStateChanged(bool isPlaying)
     {
+        // change visibility of classes depending on playback state
         if(isPlaying)
         {
-            _seqGrid.get()->setVisible(false);
-            _visual.get()->setVisible(true);
+            seqGrid.get()->setVisible(false);
+            visual.get()->setVisible(true);
         }
         else
         {
-            _seqGrid.get()->setVisible(true);
-            _visual.get()->setVisible(false); 
+            seqGrid.get()->setVisible(true);
+            visual.get()->setVisible(false); 
         }
     }
 }

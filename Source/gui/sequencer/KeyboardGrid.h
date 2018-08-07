@@ -1,12 +1,14 @@
-/*
-  ==============================================================================
-
-    KeyboardGrid.h
-    Created: 10 Jul 2018 4:13:35pm
-    Author:  Corey Ford
-
-  ==============================================================================
-*/
+/**
+ *  @file    KeyboardGrid.h
+ *  @author  Corey Ford
+ *  @date    10/07/2018
+ *  @version 1.0
+ *
+ *  @section DESCRIPTION
+ *
+ *  A visual representation of an oncreen keyboard with a grid.
+ *
+ */
 
 #pragma once
 
@@ -24,19 +26,33 @@ namespace gui
     class KeyboardGrid : public Component
     {
     public:
-        KeyboardGrid(const int rowCount);
+        /**
+         * Constructor. Adds each key to visuals.
+         * @param The number of keys to be added.
+         */
+        KeyboardGrid(const int rowCountParam);
+        
+        /** Destructor. */
         ~KeyboardGrid();
         
+        /**
+         *  Fills component with spacing colour.
+         *  @param the graphics context for painting.
+         */
         void paint (Graphics&) override;
+        
+        /** Sets bounds for sub components.*/
         void resized() override;
         
     private:
-        
+        /** Private constructor, must supply no of rows */
         KeyboardGrid();
         
-        int _rowCount;
+        /** Total number of rows (keys) to be added.*/
+        int rowCount;
         
-        OwnedArray<Key> _keys;
+        /** Pointers to key objects. */
+        OwnedArray<Key> keys;
         JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (KeyboardGrid)
     };
     

@@ -2,7 +2,7 @@
  ==============================================================================
  
  SequencerGrid.cpp
- Created: 10 Jul 2018 4:13:13pm
+ Created: 10 Jul 2018
  Author:  Corey Ford
  
  ==============================================================================
@@ -14,17 +14,17 @@
 
 namespace gui
 {
-    SequencerGrid::SequencerGrid(const int rowCount, const int columnCount):
-    _rowCount(rowCount), _columnCount(columnCount)
+    SequencerGrid::SequencerGrid(const int rowCountParam, const int columnCountParam):
+    rowCount(rowCountParam), columnCount(columnCountParam)
     {
         // Rows are assigned to the corresponding midi channel,
         // so you can only have between 1 to 16 rows.
-        jassert(_rowCount > 0 && _rowCount <= 16);
+        jassert(rowCount > 0 && rowCount <= 16);
         
         // You must have at least on column.
-        jassert(_columnCount > 0);
+        jassert(columnCount > 0);
         
-        _midiOut.setPlayback("colcount", _columnCount);
+        midiOut.setPlayback("colcount", columnCount);
         
         Array< std::shared_ptr<CartesianToggleButton> > column;
         for(int col = 0; col < columnCount; col++)
@@ -39,7 +39,7 @@ namespace gui
                 addAndMakeVisible(column.getLast().get()); // show on screen
                 
                 // add listener to midi output
-                column.getLast()->addListener(&_midiOut);
+                column.getLast()->addListener(&midiOut);
             }
             steps.add( column ); // add that newly filled column
         }
@@ -59,16 +59,16 @@ namespace gui
         
         grid.setGap(5_px);
         
-        for(int row = 0; row < _rowCount; row++)
+        for(int row = 0; row < rowCount; row++)
             grid.templateRows.add( Grid::TrackInfo (1_fr) );
         
-        for(int col = 0; col < _columnCount; col++)
+        for(int col = 0; col < columnCount; col++)
             grid.templateColumns.add( Grid::TrackInfo (1_fr) );
         
         // Add items to the grid from our 2d array of buttons (steps)
-        for(int row = 0; row < _rowCount; row++)
+        for(int row = 0; row < rowCount; row++)
         {
-            for(int col = 0; col < _columnCount; col++)
+            for(int col = 0; col < columnCount; col++)
             {
                 auto column = steps.getUnchecked(col);
                 grid.items.add( column.getUnchecked(row).get() );

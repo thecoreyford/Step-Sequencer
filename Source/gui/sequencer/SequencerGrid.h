@@ -1,12 +1,14 @@
-/*
-  ==============================================================================
-
-    SequencerGrid.h
-    Created: 10 Jul 2018 4:13:13pm
-    Author:  Corey Ford
-
-  ==============================================================================
-*/
+/**
+ *  @file    SequencerGrid.h
+ *  @author  Corey Ford
+ *  @date    10/07/2018
+ *  @version 1.0
+ *
+ *  @section DESCRIPTION
+ *
+ *  Holds a grid of each sequencer step and makes visible.
+ *
+ */
 
 #pragma once
 
@@ -30,7 +32,7 @@ namespace gui
          *  @param columnCount is the no of buttons along the y axis.
          *  @param midiOut is a reference to our midi output device.
          */
-        SequencerGrid(const int rowCount, const int columnCount);
+        SequencerGrid(const int rowCountParam, const int columnCountParam);
         
         
         /** Destructor. Currently does nothing */
@@ -56,12 +58,12 @@ namespace gui
         SequencerGrid();
         
         /** The number of rows for our grid */
-        int _rowCount;
+        int rowCount;
         /** The number of columns for our grid */
-        int _columnCount;
+        int columnCount;
         
         /** Instance of @see audio/MidiOut.h */
-        audio::MidiOut& _midiOut = audio::MidiOut::getInstance();
+        audio::MidiOut& midiOut = audio::MidiOut::getInstance();
         
         /** 2D array of buttons representing our grid points */
         Array< Array< std::shared_ptr<CartesianToggleButton> > > steps; ///< Dynamically allocate 2D array
