@@ -35,6 +35,7 @@ namespace audio
          *  Returns a value determining what time stamp is larger.
          *  @param  lhs is the leftmost message to be compared.
          *  @param  rhs is the rightmost message to be compared.
+         *  @return if the element is bigger, smaller or the same as/
          */
         static int compareElements(MidiMessage lhs, MidiMessage rhs)
         {
@@ -91,6 +92,7 @@ namespace audio
         
         /**
          *  Returns the size of the event list.
+         *  @return size of the event list.
          */
         int getSize() const;
                         

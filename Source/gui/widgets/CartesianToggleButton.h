@@ -53,6 +53,7 @@ namespace gui
         
         /**
          * Acessor for the current state of the button.
+         * @return toggle value - true for an on button state.
          */
         bool getState() const;
         

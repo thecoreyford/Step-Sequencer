@@ -43,7 +43,10 @@ namespace gui
         /** Sets bounds. */
         void resized() override;
         
-        /** Returns the MIDI note value for this key. */
+        /** 
+         * Returns the MIDI note value for this key.
+         * @return the MIDI note value.
+         */
         int getNoteNumber() const;
         
     private:
