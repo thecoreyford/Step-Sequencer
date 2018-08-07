@@ -2,7 +2,7 @@
   ==============================================================================
 
     CartesianToggleButton.cpp
-    Created: 20 Jun 2018 5:27:17pm
+    Created: 20 Jun 2018
     Author:  Corey Ford
 
   ==============================================================================
@@ -16,18 +16,20 @@ namespace gui
 {
     CartesianToggleButton::CartesianToggleButton(const int x, const int y)
     {
-        _coOrdinates.setX(x);
-        _coOrdinates.setY(y);
+        // update index
+        coOrdinates.setX(x);
+        coOrdinates.setY(y);
         
-        _state = false;
-        _listener = nullptr;
+        // initialise defaults
+        state = false;
+        listener = nullptr;
     }
     
     CartesianToggleButton::~CartesianToggleButton(){}
     
     void CartesianToggleButton::paint (Graphics& g)
     {
-        Colour fillColour = (_state == true ? Colours::green : Colours::red );
+        Colour fillColour = (state == true ? Colours::green : Colours::red );
         g.fillAll(fillColour);
     }
     
@@ -35,12 +37,12 @@ namespace gui
     
     void CartesianToggleButton::mouseDown(const MouseEvent & event)
     {
-        _state = !_state;
+        state = !state;
         
-        if(_listener != nullptr)
+        if(listener != nullptr)
         {
             // Broadcast all button information
-            _listener->cartesianToggleChanged(_state, _coOrdinates.getX(), _coOrdinates.getY());
+            listener->cartesianToggleChanged(state, coOrdinates.getX(), coOrdinates.getY());
         }
         
         repaint();
@@ -48,19 +50,19 @@ namespace gui
     
     bool CartesianToggleButton::getState() const
     {
-        return _state;
+        return state;
     }
     
-    void CartesianToggleButton::setState(const bool state)
+    void CartesianToggleButton::setState(const bool stateParam)
     {
-        _state = state;
+        state = stateParam;
     }
     
     //==========================================================================
     
-    void CartesianToggleButton::addListener (Listener* listener)
+    void CartesianToggleButton::addListener (Listener* listenerParam)
     {
-        _listener = listener;
+        listener = listenerParam;
     }
 
 }
