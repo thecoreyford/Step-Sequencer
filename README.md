@@ -3,7 +3,7 @@
 
 ## Description
 A JUCE step sequencer hobby project.
-Essensially, I was trying to keep up my JUCE skills alongside my undergrad internship aswell as applying some new coding concepts I'd read about ( weather sucessful for not :) ).
+Essensially, I was trying to keep up my JUCE skills alongside my undergrad internship aswell as applying some new coding concepts.
 
 ## Note
 This was imported from a private bit-bucket repository whilst developing.
